@@ -1,16 +1,36 @@
-# React + Vite
+# Maharsh Solanki – Portfolio (v2)
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A multi-page student portfolio application built with **React 19** and **Vite**, featuring client-side routing and dynamic state management.
 
-Currently, two official plugins are available:
+## Practical 2 – State Management & Routing
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### Routes
 
-## React Compiler
+| Path         | Component     | Description                              |
+|-------------|---------------|------------------------------------------|
+| `/`         | `Home.jsx`    | Hero, About, and Skills sections         |
+| `/projects` | `Projects.jsx`| Project cards grid                       |
+| `/contact`  | `Contact.jsx` | Controlled contact form with live preview|
+| `*`         | `NotFound.jsx`| Custom 404 error page                    |
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Features
 
-## Expanding the Oxlint configuration
+- **React Router v6** – Client-side navigation using `<Link>` (no full page reloads)
+- **`useState` – Form Input**: Controlled inputs for name, email, and message on the Contact page with live character count
+- **`useState` – UI Toggle**: Help tooltip visibility toggle on the Contact page
+- **`useState` – Dark/Light Mode**: Theme toggle button in the navbar that applies CSS class to the root element
+- **404 Route**: Custom error component for unknown paths
+- **Responsive Design**: Fully responsive across all screen sizes
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+### Tech Stack
+
+- React 19 + Vite
+- React Router v6
+- Vanilla CSS with CSS Custom Properties
+
+### Getting Started
+
+```bash
+npm install
+npm run dev
+```

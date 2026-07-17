@@ -1,10 +1,6 @@
-import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
-function NavBar() {
-  const [active, setActive] = useState('Home')
-
-  const sections = ['Home', 'About', 'Skills', 'Contact']
-
+function NavBar({ darkMode, toggleDarkMode }) {
   return (
     <nav>
       <ul style={{
@@ -12,26 +8,25 @@ function NavBar() {
         display: 'flex',
         justifyContent: 'center',
         gap: '30px',
-        padding: 0,
-        margin: 0
+        padding: '10px 0',
+        margin: '10px 0',
+        background: '#e4e4eb',
+        borderRadius: '5px'
       }}>
-        {sections.map((section) => (
-          <li
-            key={section}
-            style={{
-              cursor: 'pointer',
-              padding: '10px 20px',
-              borderRadius: '25px',
-              transition: 'all 0.3s ease',
-              fontWeight: '500',
-              background: active === section ? 'white' : 'rgba(255,255,255,0.1)',
-              color: active === section ? '#667eea' : 'white'
-            }}
-            onClick={() => setActive(section)}
-          >
-            {section}
-          </li>
-        ))}
+        <li>
+          <Link to="/" style={{ textDecoration: 'none', fontWeight: 'bold' }}>Home</Link>
+        </li>
+        <li>
+          <Link to="/projects" style={{ textDecoration: 'none', fontWeight: 'bold' }}>Projects</Link>
+        </li>
+        <li>
+          <Link to="/contact" style={{ textDecoration: 'none', fontWeight: 'bold' }}>Contact</Link>
+        </li>
+        <li>
+          <button onClick={toggleDarkMode} style={{ cursor: 'pointer', padding: '2px 8px' }}>
+            Toggle {darkMode ? 'Light' : 'Dark'} Mode
+          </button>
+        </li>
       </ul>
     </nav>
   )
