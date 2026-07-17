@@ -7,6 +7,7 @@ function NavBar({ darkMode, toggleDarkMode }) {
         listStyle: 'none',
         display: 'flex',
         justifyContent: 'center',
+        alignItems: 'center',
         gap: '30px',
         padding: '10px 0',
         margin: '10px 0',
@@ -23,7 +24,19 @@ function NavBar({ darkMode, toggleDarkMode }) {
           <Link to="/contact" style={{ textDecoration: 'none', fontWeight: 'bold' }}>Contact</Link>
         </li>
         <li>
-          <button onClick={toggleDarkMode} style={{ cursor: 'pointer', padding: '2px 8px' }}>
+          <button 
+            type="button"
+            onClick={toggleDarkMode} 
+            style={{ 
+              cursor: 'pointer', 
+              padding: '4px 10px', 
+              fontWeight: '500', 
+              borderRadius: '4px',
+              border: '1px solid #999',
+              background: '#fff',
+              color: '#333'
+            }}
+          >
             Toggle {darkMode ? 'Light' : 'Dark'} Mode
           </button>
         </li>

@@ -1,11 +1,13 @@
 import About from '../components/About'
 import Skills from '../components/Skills'
+import Education from '../components/Education'
 
-function Home({ skillList }) {
+function Home({ skills }) {
   return (
     <div>
       <About />
-      <Skills skillList={skillList} />
+      <Skills skills={skills} />
+      <Education />
     </div>
   )
 }

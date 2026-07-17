@@ -6,6 +6,11 @@ body {
   transition: background-color 0.3s, color 0.3s;
 }
 
+/* Light mode default link color in nav */
+nav a {
+  color: #1a1a2e;
+}
+
 /* Dark Mode class applied to root (html element) */
 .dark-mode {
   background-color: #121212;
@@ -24,6 +29,10 @@ body {
 
 .dark-mode nav ul {
   background-color: #2d2d2d !important;
+}
+
+.dark-mode nav a {
+  color: #ffffff;
 }
 
 .dark-mode button, 
