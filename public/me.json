@@ -3,90 +3,142 @@
   "displayName": "Maharsh",
   "preferredName": "Maharsh",
   "username": "maharsh-tech",
-  "title": "B.Tech IT student | Full-stack developer",
+  "title": "Full Stack Developer | Cloud Engineer | AI Enthusiast",
   "email": "solankimaharsh787@gmail.com",
   "phone": "",
-  "location": "Charusat University, Gujarat, India",
-  "website": "https://maharshsolanki.netlify.app",
-  "resume": "",
-  "bio": "B.Tech IT student (3rd Year) focused on full‑stack development, APIs, and AI-driven applications. Experienced with React, FastAPI, Python, and vector search/RAG systems.",
+  "location": "Nadiad, Gujarat, India",
+  "website": "https://maharsh.me",
+  "resume": "/resume.pdf",
+  "bio": "Full Stack Developer, Cloud Engineer & AI Enthusiast. Crafting scalable full-stack applications, cloud-native APIs, and AI-driven systems on cloud. Currently pursuing B.Tech in Information Technology at Charusat University.",
   "github": "https://github.com/maharsh-tech",
   "social": {
-    "linkedin": "",
+    "linkedin": "https://www.linkedin.com/in/maharsh-solanki/",
     "twitter": "",
     "facebook": ""
   },
   "skills": [
     {
       "category": "Languages",
-      "items": ["C", "C++", "Java", "Python", "JavaScript"]
+      "items": ["C", "C++", "Java", "Python", "JavaScript", "Node.js"]
     },
     {
       "category": "Frontend",
-      "items": ["React", "React Router", "HTML5", "CSS3", "Tailwind/CSS Modules"]
+      "items": ["React.js", "HTML5", "CSS3"]
     },
     {
       "category": "Backend",
-      "items": ["FastAPI", "Node.js", "Express", "Spring Boot", "REST APIs"]
+      "items": ["FastAPI", "Spring Boot", "REST APIs", "Firebase Auth"]
+    },
+    {
+      "category": "Cloud",
+      "items": ["AWS (EC2, S3, Lambda)", "Microsoft Azure"]
     },
     {
       "category": "Databases",
-      "items": ["MongoDB", "PostgreSQL", "MySQL", "ChromaDB (vector store)"]
-    },
-    {
-      "category": "Cloud & DevOps",
-      "items": ["AWS (S3, EC2, Lambda)", "Netlify", "Docker", "Git/GitHub"]
+      "items": ["MongoDB", "PostgreSQL", "MySQL"]
     },
     {
       "category": "AI / ML",
-      "items": ["RAG (Retrieval-Augmented Generation)", "LLM Integration", "Embeddings", "Vector Search"]
+      "items": ["RAG", "LLM Integration"]
     },
     {
       "category": "Tools",
-      "items": ["Postman", "VS Code", "Firebase Auth", "PyroGram"]
+      "items": ["Git", "GitHub", "Postman", "PyroGram"]
     }
   ],
   "education": [
     {
-      "degree": "B.Tech",
-      "field": "Information Technology",
+      "id": "college",
       "institution": "Charusat University",
-      "status": "Currently pursuing (3rd Year)",
-      "startYear": 2023,
-      "endYear": "Present"
-    }
-  ],
-  "experience": [
+      "degree": "B.Tech in Information Technology",
+      "period": "2024 – Present",
+      "location": "Anand, Gujarat, India",
+      "detail": "2nd Year – Currently Pursuing"
+    },
     {
-      "role": "Student Developer",
-      "company": "Personal Projects / College Practicals",
-      "start": "2022",
-      "end": "Present",
-      "highlights": [
-        "Built full-stack apps with React and FastAPI",
-        "Implemented RAG pipelines with ChromaDB and embeddings",
-        "Deployed projects to Netlify and AWS"
-      ]
+      "id": "hsc",
+      "institution": "Unique School of Science",
+      "degree": "Higher Secondary Certificate (HSC) – Science Stream",
+      "period": "Completed 2024",
+      "location": "Nadiad, Gujarat, India"
+    },
+    {
+      "id": "ssc",
+      "institution": "Unique School of Science",
+      "degree": "Secondary School Certificate (SSC)",
+      "period": "Completed 2022",
+      "location": "Nadiad, Gujarat, India"
     }
   ],
+  "experience": [],
   "projects": [
     {
+      "id": "falixmovies",
+      "title": "FalixMovies",
+      "description": "Full-stack movie browsing and streaming platform deployed on AWS, capable of handling rich media and high-volume user interactions at scale. Cloud-based content pipeline using AWS S3 and PyroGram for streaming.",
+      "techStack": ["React", "FastAPI", "MongoDB", "AWS", "PyroGram"],
+      "repoUrl": "https://github.com/maharsh-tech",
+      "liveUrl": "https://falixmovies.com",
+      "featured": true,
+      "metrics": [
+        "Cloud Streaming Pipeline",
+        "Optimized REST Endpoints",
+        "Session Management"
+      ]
+    },
+    {
+      "id": "askorgi-ai",
+      "title": "AskOrg AI",
+      "description": "AI-powered enterprise assistant for intelligent document retrieval and extraction of actionable insights from recorded meetings. Built with a RAG pipeline using ChromaDB as the vector store, centralizing organizational knowledge into a searchable system.",
+      "techStack": ["React", "FastAPI", "Python", "ChromaDB", "RAG"],
+      "repoUrl": "https://github.com/maharsh-tech/sol-frontend",
+      "featured": false,
+      "metrics": [
+        "RAG Pipeline",
+        "Meeting Intelligence",
+        "Knowledge Centralization"
+      ]
+    },
+    {
+      "id": "rag-api",
       "title": "RAG API with FastAPI",
-      "description": "Production-ready REST API for semantic Q&A over uploaded documents using local LLMs and ChromaDB vector search.",
-      "techStack": ["Python", "FastAPI", "ChromaDB", "Embeddings"],
-      "liveUrl": "https://maharshsolanki.netlify.app/rag-api-maharsh"
+      "description": "Production-ready REST API enabling natural language Q&A over user-uploaded documents using local large language models and ChromaDB vector search. Includes document ingestion, chunking, and embedding pipeline with complete developer documentation.",
+      "techStack": ["Python", "FastAPI", "ChromaDB", "LLMs", "Vector Search"],
+      "repoUrl": "https://github.com/maharsh-tech/RAG-API",
+      "liveUrl": "https://maharshsolanki.netlify.app/rag-api-maharsh",
+      "featured": false,
+      "metrics": [
+        "Document Q&A",
+        "Embedding Pipeline",
+        "Developer Docs"
+      ]
     },
     {
+      "id": "serveease",
       "title": "ServEase",
-      "description": "Full-stack service marketplace connecting users with domestic service providers. Includes Firebase Auth and Spring Boot APIs.",
-      "techStack": ["React", "Spring Boot", "Firebase", "PostgreSQL"],
-      "liveUrl": ""
+      "description": "Full-stack service marketplace connecting users with domestic help providers, featuring Firebase Auth for secure onboarding and Spring Boot REST APIs for service booking workflows. Designed with a normalized PostgreSQL schema.",
+      "techStack": ["React", "Java", "Spring Boot", "PostgreSQL", "Firebase Auth"],
+      "repoUrl": "https://github.com/maharsh-tech/ServeEase-Frontend",
+      "featured": false,
+      "metrics": [
+        "Service Booking",
+        "User Verification",
+        "Normalized Schema"
+      ]
     },
     {
+      "id": "hrms-portal",
       "title": "HRMS Portal",
-      "description": "Centralized HR management system with role-based access and real-time attendance logging.",
-      "techStack": ["MERN", "Node.js", "MongoDB"],
-      "liveUrl": ""
+      "description": "Centralized HR management system built on the MERN stack with role-based access control, real-time attendance logging, and admin dashboards for workforce oversight. Automated employee onboarding and HR workflows.",
+      "techStack": ["React", "Node.js", "Express.js", "MongoDB"],
+      "repoUrl": "https://github.com/maharsh-tech/HRMS-hackathon",
+      "liveUrl": "https://dayflow-brown.vercel.app/",
+      "featured": false,
+      "metrics": [
+        "Role-Based Access",
+        "Attendance Logging",
+        "Workflow Automation"
+      ]
     }
   ],
   "contactPref": {
