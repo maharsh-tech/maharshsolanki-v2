@@ -8,39 +8,10 @@ import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
 import './App.css'
 
-function App() {
-  const studentName = "Maharsh Solanki"
+function App({ profile }) {
+  const studentName = (profile && (profile.displayName || profile.name)) || 'Your Name'
 
-  const skills = [
-    {
-      category: 'Languages',
-      items: ['C', 'C++', 'Java', 'Python', 'JavaScript', 'Node.js'],
-    },
-    {
-      category: 'Frontend',
-      items: ['React.js', 'HTML5', 'CSS3'],
-    },
-    {
-      category: 'Backend',
-      items: ['FastAPI', 'Spring Boot', 'REST APIs', 'Firebase Auth'],
-    },
-    {
-      category: 'Cloud',
-      items: ['AWS (EC2, S3, Lambda)', 'Microsoft Azure'],
-    },
-    {
-      category: 'Databases',
-      items: ['MongoDB', 'PostgreSQL', 'MySQL'],
-    },
-    {
-      category: 'AI / ML',
-      items: ['RAG', 'LLM Integration'],
-    },
-    {
-      category: 'Tools',
-      items: ['Git', 'GitHub', 'Postman', 'PyroGram'],
-    },
-  ]
+  const skills = (profile && profile.skills) || []
 
   // useState for dark/light mode toggle
   const [darkMode, setDarkMode] = useState(false)
@@ -55,13 +26,13 @@ function App() {
       <Header name={studentName} darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       <main style={{ padding: '20px', minHeight: '60vh', maxWidth: '800px', margin: '0 auto' }}>
         <Routes>
-          <Route path="/" element={<Home skills={skills} />} />
-          <Route path="/projects" element={<Projects />} />
+          <Route path="/" element={<Home skills={skills} profile={profile} />} />
+          <Route path="/projects" element={<Projects profile={profile} />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
-      <Footer />
+      <Footer profile={profile} />
     </div>
   )
 }

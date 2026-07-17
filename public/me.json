@@ -1,0 +1,97 @@
+{
+  "name": "Maharsh Solanki",
+  "displayName": "Maharsh",
+  "preferredName": "Maharsh",
+  "username": "maharsh-tech",
+  "title": "B.Tech IT student | Full-stack developer",
+  "email": "solankimaharsh787@gmail.com",
+  "phone": "",
+  "location": "Charusat University, Gujarat, India",
+  "website": "https://maharshsolanki.netlify.app",
+  "resume": "",
+  "bio": "B.Tech IT student (3rd Year) focused on full‑stack development, APIs, and AI-driven applications. Experienced with React, FastAPI, Python, and vector search/RAG systems.",
+  "github": "https://github.com/maharsh-tech",
+  "social": {
+    "linkedin": "",
+    "twitter": "",
+    "facebook": ""
+  },
+  "skills": [
+    {
+      "category": "Languages",
+      "items": ["C", "C++", "Java", "Python", "JavaScript"]
+    },
+    {
+      "category": "Frontend",
+      "items": ["React", "React Router", "HTML5", "CSS3", "Tailwind/CSS Modules"]
+    },
+    {
+      "category": "Backend",
+      "items": ["FastAPI", "Node.js", "Express", "Spring Boot", "REST APIs"]
+    },
+    {
+      "category": "Databases",
+      "items": ["MongoDB", "PostgreSQL", "MySQL", "ChromaDB (vector store)"]
+    },
+    {
+      "category": "Cloud & DevOps",
+      "items": ["AWS (S3, EC2, Lambda)", "Netlify", "Docker", "Git/GitHub"]
+    },
+    {
+      "category": "AI / ML",
+      "items": ["RAG (Retrieval-Augmented Generation)", "LLM Integration", "Embeddings", "Vector Search"]
+    },
+    {
+      "category": "Tools",
+      "items": ["Postman", "VS Code", "Firebase Auth", "PyroGram"]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Tech",
+      "field": "Information Technology",
+      "institution": "Charusat University",
+      "status": "Currently pursuing (3rd Year)",
+      "startYear": 2023,
+      "endYear": "Present"
+    }
+  ],
+  "experience": [
+    {
+      "role": "Student Developer",
+      "company": "Personal Projects / College Practicals",
+      "start": "2022",
+      "end": "Present",
+      "highlights": [
+        "Built full-stack apps with React and FastAPI",
+        "Implemented RAG pipelines with ChromaDB and embeddings",
+        "Deployed projects to Netlify and AWS"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "RAG API with FastAPI",
+      "description": "Production-ready REST API for semantic Q&A over uploaded documents using local LLMs and ChromaDB vector search.",
+      "techStack": ["Python", "FastAPI", "ChromaDB", "Embeddings"],
+      "liveUrl": "https://maharshsolanki.netlify.app/rag-api-maharsh"
+    },
+    {
+      "title": "ServEase",
+      "description": "Full-stack service marketplace connecting users with domestic service providers. Includes Firebase Auth and Spring Boot APIs.",
+      "techStack": ["React", "Spring Boot", "Firebase", "PostgreSQL"],
+      "liveUrl": ""
+    },
+    {
+      "title": "HRMS Portal",
+      "description": "Centralized HR management system with role-based access and real-time attendance logging.",
+      "techStack": ["MERN", "Node.js", "MongoDB"],
+      "liveUrl": ""
+    }
+  ],
+  "contactPref": {
+    "email": true,
+    "phone": false
+  },
+  "notes": "Edit this file to update your public profile; fields left blank are optional."
+}
