@@ -3,8 +3,7 @@ import NavBar from './NavBar'
 function Header({ name, darkMode, toggleDarkMode }) {
   return (
     <header>
-      <h1>Student Portfolio</h1>
-      <h2>Welcome, {name}!</h2>
+      <h1>Welcome, {name}!</h1>
       <NavBar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
     </header>
   );

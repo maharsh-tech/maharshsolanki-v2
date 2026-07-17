@@ -5,7 +5,7 @@ function Education() {
       degree: 'B.Tech in Information Technology',
       period: '2024 – Present',
       location: 'Anand, Gujarat, India',
-      detail: '2nd Year – Currently Pursuing'
+      detail: '3rd Year – Currently Pursuing'
     },
     {
       institution: 'Unique School of Science',
