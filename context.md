@@ -33,17 +33,26 @@
   - `error`: Stores network/HTTP errors (`res.ok` validation).
   - `searchTerm`: Manages controlled input for client-side search filtering.
 - **UI Components Created**:
-  - `Spinner.jsx`: Accessible CSS keyframe loader.
-  - `ErrorMessage.jsx`: Error badge with diagnostic text and interactive **🔄 Try Again** retry button.
-  - `RepoList.jsx`: Renders GitHub repositories displaying stars count (`⭐`), primary language (`🛠️`), forks count (`🍴`), and direct links.
+  - `Spinner.jsx`: Accessible CSS keyframe loader supporting customizable loading labels.
+  - `ErrorMessage.jsx`: Error badge with diagnostic text and interactive warning SVGs.
+  - `RepoList.jsx`: Renders GitHub repositories using vector SVG icons instead of emojis.
 - **Supplementary Features**:
   - Interactive **Retry button** re-triggering API requests on failure.
   - **Live Search Filter** filtering rendered repositories dynamically by name/description with item count indicators.
+  - **Zero Emojis & SVG Icons**: Replaced all emojis (`⚠️`, `🔄`, `⭐`, `🛠️`, `🍴`, `🔍`) with inline, responsive vector SVGs.
+  - **5-Repository Pagination**: Slices fetched repository data at 5 records per page, rendering interactive, responsive `Previous` and `Next` navigation buttons.
+  - **Route Transitions Loader**: Listens to path updates in `App.jsx` and flashes a progress loader bar at the top of the viewport for 300ms.
+  - **Home Page Mount Loader**: Simulates a configurable 3-second loading sequence in `Home.jsx` displaying a custom loading spinner message.
+  - **Custom Loading Timers for Screenshots**: Set artificial delays of 3000ms in both `Home.jsx` and `Projects.jsx` loading states so screenshot captures can easily be recorded.
 - **Atomic Git Commit Trajectory**:
   1. `15ed2cd` - `feat: add Spinner and ErrorMessage UI components`
   2. `b0cce52` - `feat: integrate GitHub REST API fetching in Projects page with loading and error states`
   3. `889eb19` - `feat: add search filter, star counts, and retry button to Projects page`
   4. `35b03bc` - `docs: update README with Practical 3 documentation and theory reflections`
+  5. `f37012b` - `docs: add context.md tracking project history and practicals completed`
+  6. `a28dc65` - `feat: remove emojis and replace with SVG icons in UI components`
+  7. `527ba59` - `feat: add loading transition on navigation and simulated mount loading state in Home page`
+  8. `8e6cd04` - `feat: configure configurable loading messages and increase timeouts to 3 seconds for screenshots`
 
 ---
 
