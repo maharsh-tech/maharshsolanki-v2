@@ -94,13 +94,18 @@ function Projects({ profile }) {
       </div>
 
       {!loading && !error && (
-        <input
-          type="text"
-          placeholder="🔍 Search repositories by name or description..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="search-input"
-        />
+        <>
+          <input
+            type="text"
+            placeholder="🔍 Search repositories by name or description..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="search-input"
+          />
+          <div style={{ fontSize: '13px', color: '#666', marginBottom: '15px' }}>
+            Showing {filteredRepos.length} of {repos.length} repositories
+          </div>
+        </>
       )}
 
       {loading && <Spinner />}
