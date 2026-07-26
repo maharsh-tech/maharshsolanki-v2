@@ -97,7 +97,7 @@ function Projects({ profile }) {
         <>
           <input
             type="text"
-            placeholder="🔍 Search repositories by name or description..."
+            placeholder="Search repositories by name or description..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="search-input"
