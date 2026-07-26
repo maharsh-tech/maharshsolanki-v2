@@ -1,0 +1,54 @@
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+.dark-mode .search-input {
+  background-color: #2b2b2b;
+  color: #fff;
+  border-color: #444;
+}
+
+.repo-card {
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 6px;
+  background-color: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.repo-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.dark-mode .repo-card {
+  background-color: #1e1e1e;
+  border-color: #333;
+  color: #eee;
+}
+
+.repo-badge {
+  display: inline-block;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background-color: #e9ecef;
+  color: #495057;
+  margin-right: 8px;
+}
+
+.dark-mode .repo-badge {
+  background-color: #333;
+  color: #ccc;
+}
