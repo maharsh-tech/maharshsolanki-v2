@@ -4,6 +4,11 @@ function RepoList({ repos, staticProjects = [] }) {
   const [currentPage, setCurrentPage] = useState(1)
   const reposPerPage = 5
 
+  // Reset to page 1 whenever repos list updates (e.g. during searching)
+  React.useEffect(() => {
+    setCurrentPage(1)
+  }, [repos])
+
   if (!repos || repos.length === 0) {
     return (
       <div style={{ textAlign: 'center', padding: '30px', color: '#666' }}>

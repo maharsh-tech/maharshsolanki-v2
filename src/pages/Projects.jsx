@@ -110,7 +110,7 @@ function Projects({ profile }) {
         </>
       )}
 
-      {loading && <Spinner />}
+      {loading && <Spinner message="Loading projects..." />}
 
       {error && <ErrorMessage message={error} onRetry={fetchRepos} />}
 
