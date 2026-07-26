@@ -15,26 +15,28 @@ function Projects({ profile }) {
     setLoading(true)
     setError(null)
 
-    fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=30`)
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error(`GitHub API HTTP ${res.status}: ${res.statusText}`)
-        }
-        return res.json()
-      })
-      .then((data) => {
-        if (Array.isArray(data)) {
-          setRepos(data)
-        } else {
-          throw new Error('Unexpected API response payload format.')
-        }
-      })
-      .catch((err) => {
-        setError(err.message || 'Failed to fetch repositories.')
-      })
-      .finally(() => {
-        setLoading(false)
-      })
+    setTimeout(() => {
+      fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=30`)
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error(`GitHub API HTTP ${res.status}: ${res.statusText}`)
+          }
+          return res.json()
+        })
+        .then((data) => {
+          if (Array.isArray(data)) {
+            setRepos(data)
+          } else {
+            throw new Error('Unexpected API response payload format.')
+          }
+        })
+        .catch((err) => {
+          setError(err.message || 'Failed to fetch repositories.')
+        })
+        .finally(() => {
+          setLoading(false)
+        })
+    }, 3000)
   }
 
   useEffect(() => {

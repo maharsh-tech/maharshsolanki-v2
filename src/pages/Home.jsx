@@ -10,12 +10,12 @@ function Home({ skills, profile }) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false)
-    }, 300)
+    }, 3000) // Increased to 3000ms for screenshot purposes
     return () => clearTimeout(timer)
   }, [])
 
   if (loading) {
-    return <Spinner />
+    return <Spinner message="Loading portfolio sections..." />
   }
 
   return (

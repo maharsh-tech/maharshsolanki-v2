@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Spinner() {
+function Spinner({ message = "Fetching repositories from GitHub..." }) {
   return (
     <div className="spinner-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px 0' }}>
       <div className="spinner" style={{
@@ -12,7 +12,7 @@ function Spinner() {
         animation: 'spin 1s linear infinite'
       }} />
       <p style={{ marginTop: '15px', color: '#666', fontSize: '14px', fontWeight: '500' }}>
-        Fetching repositories from GitHub...
+        {message}
       </p>
     </div>
   )
