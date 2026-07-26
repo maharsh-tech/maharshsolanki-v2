@@ -44,6 +44,7 @@
   - **Route Transitions Loader**: Listens to path updates in `App.jsx` and flashes a progress loader bar at the top of the viewport for 300ms.
   - **Home Page Mount Loader**: Simulates a configurable 3-second loading sequence in `Home.jsx` displaying a custom loading spinner message.
   - **Custom Loading Timers for Screenshots**: Set artificial delays of 3000ms in both `Home.jsx` and `Projects.jsx` loading states so screenshot captures can easily be recorded.
+  - **Live Repository Data Merging**: Cross-references fetched live GitHub repositories with static metadata loaded from `public/me.json` to resolve blank description text and provide rich tech stack metadata.
 - **Atomic Git Commit Trajectory**:
   1. `15ed2cd` - `feat: add Spinner and ErrorMessage UI components`
   2. `b0cce52` - `feat: integrate GitHub REST API fetching in Projects page with loading and error states`
@@ -53,6 +54,7 @@
   6. `a28dc65` - `feat: remove emojis and replace with SVG icons in UI components`
   7. `527ba59` - `feat: add loading transition on navigation and simulated mount loading state in Home page`
   8. `8e6cd04` - `feat: configure configurable loading messages and increase timeouts to 3 seconds for screenshots`
+  9. `b179fa5` - `feat: merge live repositories with static projects from me.json to populate descriptions and tech stacks`
 
 ---
 
