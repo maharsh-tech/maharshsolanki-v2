@@ -114,7 +114,7 @@ function Projects({ profile }) {
 
       {error && <ErrorMessage message={error} onRetry={fetchRepos} />}
 
-      {!loading && !error && <RepoList repos={filteredRepos} />}
+      {!loading && !error && <RepoList repos={filteredRepos} staticProjects={staticProjects} />}
     </section>
   )
 }
