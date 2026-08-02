@@ -1,6 +1,106 @@
 # Maharsh Solanki – Portfolio (v2)
 
-A multi-page student portfolio application built with **React 19** and **Vite**, featuring client-side routing, state management, and asynchronous REST API integration.
+A full-semester monorepo containing a **React 19 + Vite** portfolio frontend and an **Express** task-management REST API backend.
+
+---
+
+## Getting Started
+
+### Frontend (React + Vite)
+
+```bash
+npm install
+npm run dev        # http://localhost:5173
+npm run build      # production build → dist/
+npm run preview    # preview production build
+npm run lint       # oxlint
+```
+
+### Backend (Express — Practical 4)
+
+```bash
+cd server
+npm install
+npm start          # http://localhost:5000
+```
+
+Both servers run independently. The frontend is unchanged from Practical 3; the backend is tested with Postman or Thunder Client.
+
+---
+
+## Practical 4 – RESTful API with Node.js and Express
+
+### Architecture Overview
+
+```
+Client (Postman / Browser)
+        |
+        v
+[Request Logging Middleware]
+        |
+        v
+Express Router  (/tasks)
+├── GET    /tasks       → getAllTasks
+├── POST   /tasks       → createTask
+├── PUT    /tasks/:id   → updateTask
+└── DELETE /tasks/:id   → deleteTask
+        |
+        v
+[404 Handler] → [Global Error Handler]
+```
+
+### Features Implemented
+
+- **CRUD endpoints** for tasks stored in an in-memory array
+- **Request logging middleware** — logs method, URL, and ISO timestamp for every request
+- **Content-Type validation** — rejects POST/PUT requests without `application/json`
+- **Task ID validation** — route-specific middleware validates numeric IDs on PUT/DELETE
+- **404 handler** — structured JSON response for undefined routes
+- **Global error handler** — last middleware in the pipeline; returns `{ error: 'Something went wrong' }` with status 500
+
+### API Endpoints
+
+| Method | Path | Status | Description |
+|--------|------|--------|-------------|
+| GET | `/tasks` | 200 | List all tasks |
+| POST | `/tasks` | 201 | Create a task (`title` required) |
+| PUT | `/tasks/:id` | 200 / 404 | Update a task by ID |
+| DELETE | `/tasks/:id` | 200 / 404 | Delete a task by ID |
+
+**Task object shape:**
+
+```json
+{
+  "id": "1",
+  "title": "Study Express",
+  "description": "Week 4 lab",
+  "completed": false
+}
+```
+
+### Testing
+
+Run the automated verification script while the server is running:
+
+```bash
+cd server
+node test-api.js
+```
+
+Or test manually with Postman / Thunder Client against `http://localhost:5000`.
+
+Screenshots for lab submission: save manually to `docs/screenshots/week-04/`.
+
+### Theory & Analysis Questions
+
+#### 1. Why must the error handling middleware be defined last in the middleware chain?
+Express processes middleware in registration order. The error handler has four parameters `(err, req, res, next)` and only runs when `next(err)` is called or an error is thrown. If it is registered before routes, unmatched errors from routes defined later will bypass it. Placing it last ensures every route and middleware has already executed, so any error propagates to the single centralized handler.
+
+#### 2. What is the difference between `app.use()` and a route-specific middleware?
+`app.use()` registers middleware globally — it runs for every request matching the path prefix (or all requests if no path is given). Route-specific middleware is attached to individual routes (e.g. `router.put('/:id', validateTaskId, updateTask)`) and only executes for requests hitting that route. Global middleware suits cross-cutting concerns like logging; route-specific middleware suits validation tied to a particular endpoint.
+
+#### 3. Why is it considered bad practice to send raw error stack traces to the client?
+Stack traces expose internal file paths, function names, and library versions that help attackers map the server architecture. They also leak implementation details unrelated to the user's request. A generic `{ error: 'Something went wrong' }` response keeps the client informed while detailed diagnostics are logged server-side via `console.error(err.stack)`.
 
 ---
 
@@ -27,13 +127,11 @@ Projects.jsx
 - **Conditional UI Feedback**:
   - `<Spinner />`: Custom CSS keyframe spinner with accessibility loading text.
   - `<ErrorMessage />`: Warning callout card with error details and **Retry button**.
-  - `<RepoList />`: Grid of repository cards displaying name, GitHub link, stargazers count (`⭐`), primary language, and forks count.
+  - `<RepoList />`: Grid of repository cards displaying name, GitHub link, stargazers count, primary language, and forks count.
 - **Supplementary Features**:
   - **Retry Mechanism**: Re-executes the API fetch on network error.
   - **Real-Time Search Input**: Instant client-side filtering by repository name or description.
   - **Star Count**: Displays live star ratings for each repository.
-
----
 
 ### Theory & Analysis Questions
 
@@ -60,16 +158,3 @@ Without loading indicators, users experience a blank or frozen UI during network
 | `/projects` | `Projects.jsx`| Static featured projects + Live GitHub Repositories |
 | `/contact`  | `Contact.jsx` | Controlled contact form with live preview|
 | `*`         | `NotFound.jsx`| Custom 404 error page                    |
-
-### Getting Started
-
-```bash
-npm install
-npm run dev
-```
-
-To build for production:
-
-```bash
-npm run build
-```
