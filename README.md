@@ -89,8 +89,6 @@ node test-api.js
 
 Or test manually with Postman / Thunder Client against `http://localhost:5000`.
 
-Screenshots for lab submission: save manually to `docs/screenshots/week-04/`.
-
 ### Theory & Analysis Questions
 
 #### 1. Why must the error handling middleware be defined last in the middleware chain?
