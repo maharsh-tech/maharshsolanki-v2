@@ -41,6 +41,7 @@ Client (Postman / Browser)
         v
 Express Router  (/tasks)
 ├── GET    /tasks       → getAllTasks
+├── GET    /tasks/:id   → getTaskById
 ├── POST   /tasks       → createTask
 ├── PUT    /tasks/:id   → updateTask
 └── DELETE /tasks/:id   → deleteTask
@@ -54,7 +55,7 @@ Express Router  (/tasks)
 - **CRUD endpoints** for tasks stored in an in-memory array
 - **Request logging middleware** — logs method, URL, and ISO timestamp for every request
 - **Content-Type validation** — rejects POST/PUT requests without `application/json`
-- **Task ID validation** — route-specific middleware validates numeric IDs on PUT/DELETE
+- **Task ID validation** — route-specific middleware validates numeric IDs on GET/PUT/DELETE by ID
 - **404 handler** — structured JSON response for undefined routes
 - **Global error handler** — last middleware in the pipeline; returns `{ error: 'Something went wrong' }` with status 500
 
@@ -63,6 +64,7 @@ Express Router  (/tasks)
 | Method | Path | Status | Description |
 |--------|------|--------|-------------|
 | GET | `/tasks` | 200 | List all tasks |
+| GET | `/tasks/:id` | 200 / 404 | Retrieve a single task by ID |
 | POST | `/tasks` | 201 | Create a task (`title` required) |
 | PUT | `/tasks/:id` | 200 / 404 | Update a task by ID |
 | DELETE | `/tasks/:id` | 200 / 404 | Delete a task by ID |

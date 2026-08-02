@@ -5,6 +5,21 @@ function getAllTasks(req, res) {
   res.status(200).json(tasks)
 }
 
+function getTaskById(req, res, next) {
+  try {
+    const { id } = req.params
+    const task = tasks.find((task) => task.id === id)
+
+    if (!task) {
+      return res.status(404).json({ error: `Task with id ${id} not found` })
+    }
+
+    res.status(200).json(task)
+  } catch (err) {
+    next(err)
+  }
+}
+
 function createTask(req, res, next) {
   try {
     const { title, description, completed } = req.body
@@ -79,6 +94,7 @@ function deleteTask(req, res, next) {
 
 module.exports = {
   getAllTasks,
+  getTaskById,
   createTask,
   updateTask,
   deleteTask,

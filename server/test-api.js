@@ -55,6 +55,10 @@ async function runTests() {
   r = await request('GET', '/tasks')
   log('GET /tasks (with data)', r.status === 200 && r.data.length === initialCount + 2, `status=${r.status}, count=${r.data.length}`)
 
+  // GET /tasks/:id (existing task)
+  r = await request('GET', `/tasks/${taskId}`)
+  log('GET /tasks/:id (existing)', r.status === 200 && r.data.id === taskId, `status=${r.status}`)
+
   // PUT /tasks/:id
   r = await request('PUT', `/tasks/${taskId}`, { title: 'Study Express (updated)', completed: true })
   log('PUT /tasks/:id', r.status === 200 && r.data.completed === true, `status=${r.status}`)
@@ -69,11 +73,15 @@ async function runTests() {
 
   // 404 task not found
   r = await request('GET', '/tasks/999')
-  // GET on /tasks/999 isn't defined - only PUT and DELETE use :id. Undefined route should 404
+  log('GET /tasks/999 (not found)', r.status === 404, `status=${r.status}`)
+
   r = await request('PUT', '/tasks/999', { title: 'Missing' })
   log('PUT /tasks/999 (not found)', r.status === 404, `status=${r.status}`)
 
   // Invalid ID format
+  r = await request('GET', '/tasks/abc')
+  log('GET /tasks/abc (invalid ID)', r.status === 400, `status=${r.status}`)
+
   r = await request('PUT', '/tasks/abc', { title: 'Bad id' })
   log('PUT /tasks/abc (invalid ID)', r.status === 400, `status=${r.status}`)
 
