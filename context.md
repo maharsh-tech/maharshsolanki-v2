@@ -7,7 +7,7 @@
 - **Tech Stack**: React 19, Vite 8, React Router DOM v7, Vanilla CSS
 - **Data Sources**:
   - Profile data: `public/me.json`
-  - Tasks: Express API at `http://localhost:5000/tasks` via `src/api.js`
+  - Tasks: Express API via `VITE_API_BASE_URL` in `.env` → `src/api.js`
 - **Backend repo**: [task-manager-api-24it093](https://github.com/maharsh-tech/task-manager-api-24it093)
 
 ---
@@ -50,7 +50,7 @@ maharshsolanki-v2/
     ├── main.jsx                  # Bootstraps app, fetches me.json
     ├── App.jsx                   # Routes, dark mode, route loading bar
     ├── App.css / index.css       # Component & global styles
-    ├── api.js                    # Shared BASE_URL + task CRUD fetch helpers
+    ├── api.js                    # Task CRUD helpers; base URL from VITE_API_BASE_URL
     ├── components/
     │   ├── Header.jsx
     │   ├── NavBar.jsx

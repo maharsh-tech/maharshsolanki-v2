@@ -1,11 +1,15 @@
-const BASE_URL = 'http://localhost:5000'
+const BASE_URL = import.meta.env.VITE_API_BASE_URL
+
+if (!BASE_URL) {
+  throw new Error('Missing VITE_API_BASE_URL. Copy .env.example to .env and set the API base URL.')
+}
 
 async function request(path, options = {}) {
   let res
   try {
     res = await fetch(`${BASE_URL}${path}`, options)
   } catch {
-    throw new Error('Network error: is the backend running on port 5000?')
+    throw new Error('Network error: could not reach the API. Is the backend running?')
   }
 
   let data = null

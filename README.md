@@ -8,23 +8,24 @@ A multi-page student portfolio application built with **React 19** and **Vite**,
 
 ## Getting Started (Practical 6 — dual servers)
 
-1. Start the backend API (port 5000):
+1. Start the backend API:
 
 ```bash
 cd ../task-manager-api-24it093
-cp .env.example .env   # set MONGO_URI if needed
+cp .env.example .env   # set MONGO_URI, PORT, CORS_ORIGIN
 npm install
 npm start
 ```
 
-2. Start this frontend (port 5173):
+2. Start this frontend:
 
 ```bash
+cp .env.example .env   # set VITE_API_BASE_URL
 npm install
 npm run dev
 ```
 
-Open `http://localhost:5173/tasks` to use the Task Manager UI. All task data is persisted in MongoDB via `http://localhost:5000/tasks`.
+Open `http://localhost:5173/tasks` for the Task Manager UI. The API base URL comes from `VITE_API_BASE_URL` (not hardcoded).
 
 To build for production:
 
@@ -53,7 +54,7 @@ Flow: /tasks page → TaskForm → POST /tasks → MongoDB → UI updates list �
 ### Features Implemented
 
 - **Dedicated `/tasks` route** (separate from portfolio `/projects`) for Task Manager CRUD
-- **CORS-ready API client** in `src/api.js` with a single `BASE_URL` (`http://localhost:5000`)
+- **CORS-ready API client** in `src/api.js` using `VITE_API_BASE_URL` from `.env`
 - **Replaced Practical 3 GitHub fetch** with own `/tasks` API (Task Manager page)
 - **Create / read / update / delete** tasks from the React UI
 - **Loading and error states** for list fetch (Spinner + ErrorMessage + Retry)
