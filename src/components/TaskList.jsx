@@ -13,7 +13,7 @@ function TaskList({
   if (!tasks.length) {
     return (
       <p style={{ color: '#666', fontSize: '14px' }}>
-        No tasks yet. Create one above — data is stored in MongoDB.
+        No tasks yet.
       </p>
     )
   }

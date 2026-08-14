@@ -67,7 +67,7 @@ function Tasks() {
     try {
       const created = await createTask(body)
       setTasks((prev) => prev.map((t) => (t._id === tempId ? created : t)))
-      showToast('success', 'Task created successfully.')
+      showToast('success', 'Task created.')
       return true
     } catch (err) {
       setTasks((prev) => prev.filter((t) => t._id !== tempId))
@@ -83,7 +83,7 @@ function Tasks() {
     try {
       const updated = await updateTask(task._id, { completed: !task.completed })
       setTasks((prev) => prev.map((t) => (t._id === task._id ? updated : t)))
-      showToast('success', updated.completed ? 'Task marked complete.' : 'Task marked incomplete.')
+      showToast('success', updated.completed ? 'Marked complete.' : 'Marked incomplete.')
     } catch (err) {
       showToast('error', err.message || 'Failed to update task.')
     } finally {
@@ -117,7 +117,7 @@ function Tasks() {
       const updated = await updateTask(id, payload)
       setTasks((prev) => prev.map((t) => (t._id === id ? updated : t)))
       handleCancelEdit()
-      showToast('success', 'Task updated successfully.')
+      showToast('success', 'Task updated.')
     } catch (err) {
       showToast('error', err.message || 'Failed to update task.')
     } finally {
@@ -135,7 +135,7 @@ function Tasks() {
       setTasks((prev) => prev.filter((t) => t._id !== id))
       if (editingId === id) handleCancelEdit()
       setPendingDelete(null)
-      showToast('success', 'Task deleted successfully.')
+      showToast('success', 'Task deleted.')
     } catch (err) {
       showToast('error', err.message || 'Failed to delete task.')
     } finally {
@@ -146,20 +146,11 @@ function Tasks() {
 
   return (
     <section className="tasks" style={{ padding: '20px 0' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px', marginBottom: '15px' }}>
-        <h2 style={{ margin: 0 }}>Task Manager</h2>
-        <span style={{ fontSize: '13px', color: '#777' }}>
-          API Source: <code>http://localhost:5000/tasks</code>
-        </span>
-      </div>
-      <p style={{ color: '#666', marginBottom: '20px', fontSize: '14px' }}>
-        Full-stack CRUD against the Express + MongoDB backend (Practical 6).
-        Refresh the page to confirm persistence. Week 7 will add JWT protection for this surface.
-      </p>
+      <h2 style={{ marginTop: 0, marginBottom: '20px' }}>Task Manager</h2>
 
       <TaskForm onSubmit={handleCreate} submitting={creating} />
 
-      {loading && <Spinner message="Loading tasks from your API..." />}
+      {loading && <Spinner message="Loading tasks..." />}
 
       {error && (
         <ErrorMessage
@@ -189,7 +180,7 @@ function Tasks() {
         title="Delete task?"
         message={
           pendingDelete
-            ? `Are you sure you want to delete "${pendingDelete.title}"? This cannot be undone.`
+            ? `Delete "${pendingDelete.title}"? This cannot be undone.`
             : ''
         }
         confirmLabel="Delete"

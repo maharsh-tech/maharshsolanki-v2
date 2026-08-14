@@ -24,10 +24,9 @@ function TaskForm({ onSubmit, submitting }) {
 
   return (
     <form className="task-form" onSubmit={handleSubmit} style={{ marginBottom: '24px' }}>
-      <h3 style={{ marginTop: 0 }}>Create Task</h3>
       <div style={{ marginBottom: '12px' }}>
         <label htmlFor="task-title" style={{ display: 'block', fontWeight: 'bold', marginBottom: '4px' }}>
-          Title *
+          Title
         </label>
         <input
           id="task-title"
@@ -36,7 +35,7 @@ function TaskForm({ onSubmit, submitting }) {
           style={{ marginBottom: 0 }}
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          placeholder="What needs to be done?"
+          placeholder="Task title"
           required
           disabled={submitting}
         />
@@ -51,7 +50,7 @@ function TaskForm({ onSubmit, submitting }) {
           style={{ marginBottom: 0, minHeight: '72px', resize: 'vertical' }}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          placeholder="Optional details"
+          placeholder="Description"
           disabled={submitting}
         />
       </div>
@@ -87,7 +86,7 @@ function TaskForm({ onSubmit, submitting }) {
           opacity: submitting || !title.trim() ? 0.6 : 1,
         }}
       >
-        {submitting ? 'Creating...' : 'Add Task'}
+        {submitting ? 'Adding...' : 'Add task'}
       </button>
     </form>
   )
