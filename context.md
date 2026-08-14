@@ -23,7 +23,8 @@ index.html
                     ├── Header → NavBar
                     ├── Routes
                     │     ├── /         → Home → About, Skills, Education
-                    │     ├── /projects → Projects → Featured + Task Manager CRUD
+                    │     ├── /projects → Projects → Featured projects only
+                    │     ├── /tasks    → Tasks → Task Manager CRUD
                     │     ├── /contact  → Contact (local form only)
                     │     └── *         → NotFound
                     └── Footer
@@ -65,7 +66,8 @@ maharshsolanki-v2/
     │   └── Toast.jsx
     └── pages/
         ├── Home.jsx
-        ├── Projects.jsx          # Featured projects + Task Manager UI
+        ├── Projects.jsx          # Featured projects from me.json
+        ├── Tasks.jsx             # Task Manager CRUD (Practical 6)
         ├── Contact.jsx
         └── NotFound.jsx
 ```
@@ -80,11 +82,11 @@ Profile, skills, education, and static project metadata load once at startup in 
 
 ### Local component state only
 
-No global state library. Task list state lives in `Projects.jsx`. All HTTP goes through `src/api.js` so Week 7 can attach JWT headers in one place.
+No global state library. Task list state lives in `Tasks.jsx`. All HTTP goes through `src/api.js` so Week 7 can attach JWT headers in one place.
 
 ### Own backend instead of GitHub (Practical 6)
 
-The Live GitHub Repositories section from Practical 3 was replaced with Task Manager CRUD against MongoDB. Static Featured Projects from `me.json` remain.
+The Live GitHub Repositories section from Practical 3 was replaced by a dedicated Task Manager page at `/tasks` (MongoDB-backed). Portfolio Featured Projects stay on `/projects`.
 
 ### Optimistic create with rollback
 
@@ -124,7 +126,8 @@ New tasks appear immediately with a temporary `_id`; on success they are replace
 ### Practical 6 – Full Stack Integration
 
 - `src/api.js` central client for `/tasks`
-- TaskForm / TaskList / ConfirmDialog / Toast on Projects page
+- Dedicated `/tasks` page with TaskForm / TaskList / ConfirmDialog / Toast
+- Portfolio `/projects` remains featured-projects only
 - CORS enabled on backend repo; two repos kept separate (no monorepo)
 
 ---
@@ -182,4 +185,4 @@ npm run dev          # http://localhost:5173
 npm run lint
 ```
 
-Open `/projects`, create/update/delete a task, refresh the browser, and confirm MongoDB persistence.
+Open `/tasks`, create/update/delete a task, refresh the browser, and confirm MongoDB persistence.

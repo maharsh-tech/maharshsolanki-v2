@@ -24,7 +24,7 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:5173/projects` to use the Task Manager UI. All task data is persisted in MongoDB via `http://localhost:5000/tasks`.
+Open `http://localhost:5173/tasks` to use the Task Manager UI. All task data is persisted in MongoDB via `http://localhost:5000/tasks`.
 
 To build for production:
 
@@ -47,19 +47,20 @@ Express Backend (localhost:5000)  — separate repo
         v
    MongoDB Atlas
 
-Flow: TaskForm → POST /tasks → MongoDB → UI updates list → refresh keeps data
+Flow: /tasks page → TaskForm → POST /tasks → MongoDB → UI updates list → refresh keeps data
 ```
 
 ### Features Implemented
 
+- **Dedicated `/tasks` route** (separate from portfolio `/projects`) for Task Manager CRUD
 - **CORS-ready API client** in `src/api.js` with a single `BASE_URL` (`http://localhost:5000`)
-- **Replaced Practical 3 GitHub fetch** on `/projects` with own `/tasks` CRUD
+- **Replaced Practical 3 GitHub fetch** with own `/tasks` API (Task Manager page)
 - **Create / read / update / delete** tasks from the React UI
 - **Loading and error states** for list fetch (Spinner + ErrorMessage + Retry)
 - **Write-operation feedback** via toast notifications
 - **Delete confirmation dialog** before removing a task
 - **Optimistic create** — new task appears immediately; rolls back if the API fails
-- Static **Featured Projects** from `me.json` kept above the Task Manager section
+- Portfolio **Featured Projects** remain on `/projects` only (from `me.json`)
 
 ### Theory & Analysis Questions
 
@@ -81,12 +82,12 @@ Failed writes with no error UI make users believe a create/update/delete succeed
 ### Architecture Overview (as completed in Week 3)
 
 ```
-Projects.jsx
+Tasks.jsx
 ├── useEffect() → triggers API fetch on mount
 ├── useState: data, loading, error
 ├── [loading]  → <Spinner />
 ├── [error]    → <ErrorMessage message={error} onRetry={...} />
-└── [success]  → list UI
+└── [success]  → TaskList UI
 ```
 
 ### Theory & Analysis Questions
@@ -111,6 +112,7 @@ Without loading indicators, users see a blank UI during latency. Without error h
 | Path         | Component     | Description                                         |
 |-------------|---------------|-----------------------------------------------------|
 | `/`         | `Home.jsx`    | Hero, About, and Skills sections                    |
-| `/projects` | `Projects.jsx`| Static featured projects + Task Manager (Practical 6)|
+| `/projects` | `Projects.jsx`| Static featured projects from `me.json`             |
+| `/tasks`    | `Tasks.jsx`   | Task Manager CRUD (Practical 6; JWT in Week 7)      |
 | `/contact`  | `Contact.jsx` | Controlled contact form with live preview           |
 | `*`         | `NotFound.jsx`| Custom 404 error page                               |
