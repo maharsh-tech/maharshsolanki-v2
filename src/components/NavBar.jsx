@@ -21,6 +21,9 @@ function NavBar({ darkMode, toggleDarkMode }) {
           <Link to="/projects" style={{ textDecoration: 'none', fontWeight: 'bold' }}>Projects</Link>
         </li>
         <li>
+          <Link to="/tasks" style={{ textDecoration: 'none', fontWeight: 'bold' }}>Tasks</Link>
+        </li>
+        <li>
           <Link to="/contact" style={{ textDecoration: 'none', fontWeight: 'bold' }}>Contact</Link>
         </li>
         <li>

@@ -4,6 +4,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Home from './pages/Home'
 import Projects from './pages/Projects'
+import Tasks from './pages/Tasks'
 import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
 import './App.css'
@@ -64,6 +65,7 @@ function App({ profile }) {
         <Routes>
           <Route path="/" element={<Home skills={skills} profile={profile} />} />
           <Route path="/projects" element={<Projects profile={profile} />} />
+          <Route path="/tasks" element={<Tasks />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
