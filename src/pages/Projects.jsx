@@ -48,7 +48,9 @@ function Projects({ profile }) {
   }, [fetchTasks])
 
   const handleCreate = async (body) => {
-    const tempId = `temp-${Date.now()}`
+    // Optimistic UI: show the task immediately, then reconcile with the server document
+    // or roll back the temp row if createTask fails.
+    const tempId = `temp-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`
     const optimisticTask = {
       _id: tempId,
       title: body.title,
