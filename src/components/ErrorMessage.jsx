@@ -1,6 +1,6 @@
 import React from 'react'
 
-function ErrorMessage({ message, onRetry }) {
+function ErrorMessage({ title = 'Unable to load data', message, onRetry }) {
   return (
     <div className="error-card" style={{
       border: '1px solid #f5c6cb',
@@ -31,10 +31,10 @@ function ErrorMessage({ message, onRetry }) {
           <line x1="12" y1="9" x2="12" y2="13" />
           <line x1="12" y1="17" x2="12.01" y2="17" />
         </svg>
-        <h3 style={{ margin: 0, fontSize: '18px' }}>Unable to load repositories</h3>
+        <h3 style={{ margin: 0, fontSize: '18px' }}>{title}</h3>
       </div>
       <p style={{ margin: '0 0 5px 0', fontSize: '14px' }}>
-        {message || 'An unexpected network error occurred while contacting the GitHub API.'}
+        {message || 'An unexpected network error occurred while contacting the API.'}
       </p>
       {onRetry && (
         <button
