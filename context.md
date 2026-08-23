@@ -163,6 +163,7 @@ New tasks appear immediately with a temporary `_id`; on success they are replace
 - `/login`, `/register` pages; register → login → `/tasks`
 - `ProtectedRoute` guards `/tasks`; NavBar logout clears token
 - 401 responses clear token and redirect to `/login` (api.js + Tasks.jsx)
+- Backend scopes tasks per user (`userId`); different logins see different task lists
 
 ---
 
@@ -175,6 +176,7 @@ New tasks appear immediately with a temporary `_id`; on success they are replace
 | Task Manager UI ↔ Express API | Complete (Practical 6) |
 | Env-based API URL | Complete (`VITE_API_BASE_URL`) |
 | JWT authentication (login, logout, protected `/tasks`) | Complete (Practical 7) |
+| Per-user tasks (backend `userId` scoping) | Complete |
 | Contact form | Local state only (no backend POST) |
 | Route-based lazy loading | Not started (Week 8) |
 

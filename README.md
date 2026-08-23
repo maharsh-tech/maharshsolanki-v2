@@ -54,6 +54,7 @@ Logout    → clear token → redirect /login
 - **`ProtectedRoute`** — `/tasks` requires a token; otherwise redirect to `/login`
 - **Logout** in NavBar clears token and sends user to login
 - **401 handling** — expired or invalid tokens clear storage and redirect to login
+- **Per-user tasks** — backend scopes all `/tasks` CRUD to the logged-in user; each account has its own list
 
 ### Theory & Analysis Questions
 
