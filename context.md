@@ -83,11 +83,14 @@ maharshsolanki-v2/
     │   ├── TaskForm.jsx
     │   ├── TaskList.jsx
     │   ├── ConfirmDialog.jsx
-    │   └── Toast.jsx
+    │   ├── Toast.jsx
+    │   └── ProtectedRoute.jsx
     └── pages/
         ├── Home.jsx
         ├── Projects.jsx          # Featured projects from me.json
-        ├── Tasks.jsx             # Task Manager CRUD (Practical 6)
+        ├── Tasks.jsx             # Task Manager CRUD (auth required)
+        ├── Login.jsx
+        ├── Register.jsx
         ├── Contact.jsx
         └── NotFound.jsx
 ```
@@ -102,7 +105,7 @@ Profile, skills, education, and static project metadata load once at startup in 
 
 ### Local component state only
 
-No global state library. Task list state lives in `Tasks.jsx`. All HTTP goes through `src/api.js` so Week 7 can attach JWT headers in one place.
+No global state library. Task list state lives in `Tasks.jsx`. All HTTP goes through `src/api.js` which stores the JWT and attaches Bearer headers.
 
 ### Env-based API base URL (no hardcoded hosts)
 
@@ -110,7 +113,7 @@ No global state library. Task list state lives in `Tasks.jsx`. All HTTP goes thr
 
 ### Dedicated `/tasks` page (not under Projects)
 
-Portfolio (`/projects`) and Task Manager (`/tasks`) are separate routes. Week 7 JWT/admin work targets `/tasks` without touching portfolio pages.
+Portfolio (`/projects`) and Task Manager (`/tasks`) are separate routes. `/tasks` is wrapped in `ProtectedRoute` (Practical 7).
 
 ### Optimistic create with rollback
 
@@ -154,6 +157,13 @@ New tasks appear immediately with a temporary `_id`; on success they are replace
 - Portfolio `/projects` remains featured-projects only
 - Backend CORS via `CORS_ORIGIN` in backend `.env`; two repos kept separate
 
+### Practical 7 – Authentication and Middleware Pipeline
+
+- JWT stored in `localStorage` (`auth_token`); `Authorization: Bearer` on all API requests
+- `/login`, `/register` pages; register → login → `/tasks`
+- `ProtectedRoute` guards `/tasks`; NavBar logout clears token
+- 401 responses clear token and redirect to `/login` (api.js + Tasks.jsx)
+
 ---
 
 ## Current Implementation Status
@@ -161,11 +171,11 @@ New tasks appear immediately with a temporary `_id`; on success they are replace
 | Area | Status |
 |------|--------|
 | Portfolio frontend (Practicals 1–3) | Complete |
-| Client-side routing | Complete (`/`, `/projects`, `/tasks`, `/contact`) |
+| Client-side routing | Complete (`/`, `/projects`, `/tasks`, `/login`, `/register`, `/contact`) |
 | Task Manager UI ↔ Express API | Complete (Practical 6) |
 | Env-based API URL | Complete (`VITE_API_BASE_URL`) |
+| JWT authentication (login, logout, protected `/tasks`) | Complete (Practical 7) |
 | Contact form | Local state only (no backend POST) |
-| JWT authentication | Not started (Week 7) |
 | Route-based lazy loading | Not started (Week 8) |
 
 ---
@@ -213,4 +223,4 @@ npm run dev
 npm run lint
 ```
 
-Open `/tasks`, create/update/delete a task, refresh the browser, and confirm MongoDB persistence.
+Open `/login`, register or sign in, then use `/tasks` to create/update/delete tasks. Logout and confirm `/tasks` redirects to login.

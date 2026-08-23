@@ -25,13 +25,46 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:5173/tasks` for the Task Manager UI. The API base URL comes from `VITE_API_BASE_URL` (not hardcoded).
+Open `http://localhost:5173/tasks` for the Task Manager UI (login required). The API base URL comes from `VITE_API_BASE_URL` (not hardcoded).
 
 To build for production:
 
 ```bash
 npm run build
 ```
+
+---
+
+## Practical 7 – Authentication and Middleware Pipeline
+
+### Frontend auth flow
+
+```
+/register → POST /auth/register → redirect /login
+/login    → POST /auth/login → store JWT in localStorage → /tasks
+/tasks    → ProtectedRoute checks token → Bearer header on all API calls
+Logout    → clear token → redirect /login
+401       → clear token → redirect /login (Tasks page + api.js)
+```
+
+### Features Implemented
+
+- **JWT in `localStorage`** — `src/api.js` attaches `Authorization: Bearer` on every request
+- **`/login` and `/register` pages** — register then sign in; login stores token and opens Task Manager
+- **`ProtectedRoute`** — `/tasks` requires a token; otherwise redirect to `/login`
+- **Logout** in NavBar clears token and sends user to login
+- **401 handling** — expired or invalid tokens clear storage and redirect to login
+
+### Theory & Analysis Questions
+
+#### 1. Why store the JWT on the client after login instead of sending the password on every request?
+Passwords must not be sent repeatedly — each transmission increases exposure. A short-lived JWT proves the user already authenticated; the server verifies the signature without storing session state in memory for every user.
+
+#### 2. Why redirect to login on 401 instead of showing a generic error?
+A 401 means the token is missing, invalid, or expired — the user is no longer authenticated. Continuing to show the Task Manager would imply they can still access protected data. Clearing the token and redirecting restores a consistent logged-out state.
+
+#### 3. Why protect `/tasks` in the frontend if the backend already requires JWT?
+The backend is the real security boundary, but the frontend guard improves UX (no flash of empty tasks or failed API calls) and hides the CRUD UI from anonymous visitors. Direct API calls without a token still fail with 401 on the server.
 
 ---
 
@@ -114,6 +147,8 @@ Without loading indicators, users see a blank UI during latency. Without error h
 |-------------|---------------|-----------------------------------------------------|
 | `/`         | `Home.jsx`    | Hero, About, and Skills sections                    |
 | `/projects` | `Projects.jsx`| Static featured projects from `me.json`             |
-| `/tasks`    | `Tasks.jsx`   | Task Manager CRUD (Practical 6; JWT in Week 7)      |
+| `/tasks`    | `Tasks.jsx`   | Task Manager CRUD (login required; Practical 7 JWT) |
+| `/login`    | `Login.jsx`   | Sign in; stores JWT and opens `/tasks`              |
+| `/register` | `Register.jsx`| Create account; redirects to login                  |
 | `/contact`  | `Contact.jsx` | Controlled contact form with live preview           |
 | `*`         | `NotFound.jsx`| Custom 404 error page                               |
