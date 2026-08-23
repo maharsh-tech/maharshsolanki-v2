@@ -1,6 +1,15 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { isAuthenticated, logout } from '../api'
 
 function NavBar({ darkMode, toggleDarkMode }) {
+  const navigate = useNavigate()
+  const loggedIn = isAuthenticated()
+
+  const handleLogout = () => {
+    logout()
+    navigate('/login')
+  }
+
   return (
     <nav>
       <ul style={{
@@ -25,6 +34,15 @@ function NavBar({ darkMode, toggleDarkMode }) {
         </li>
         <li>
           <Link to="/contact" style={{ textDecoration: 'none', fontWeight: 'bold' }}>Contact</Link>
+        </li>
+        <li>
+          {loggedIn ? (
+            <button type="button" onClick={handleLogout} style={{ cursor: 'pointer', fontWeight: 'bold' }}>
+              Logout
+            </button>
+          ) : (
+            <Link to="/login" style={{ textDecoration: 'none', fontWeight: 'bold' }}>Login</Link>
+          )}
         </li>
         <li>
           <button 

@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Spinner from '../components/Spinner'
 import ErrorMessage from '../components/ErrorMessage'
 import TaskForm from '../components/TaskForm'
@@ -8,6 +9,7 @@ import Toast from '../components/Toast'
 import { getTasks, createTask, updateTask, deleteTask } from '../api'
 
 function Tasks() {
+  const navigate = useNavigate()
   const [tasks, setTasks] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -23,6 +25,14 @@ function Tasks() {
     setToast({ type, message })
   }, [])
 
+  const handleAuthError = useCallback((err) => {
+    if (err.status === 401) {
+      navigate('/login')
+      return true
+    }
+    return false
+  }, [navigate])
+
   const fetchTasks = useCallback(() => {
     setLoading(true)
     setError(null)
@@ -35,13 +45,14 @@ function Tasks() {
         setTasks(data)
       })
       .catch((err) => {
+        if (handleAuthError(err)) return
         setError(err.message || 'Failed to fetch tasks.')
         setTasks([])
       })
       .finally(() => {
         setLoading(false)
       })
-  }, [])
+  }, [handleAuthError])
 
   useEffect(() => {
     fetchTasks()
@@ -71,7 +82,9 @@ function Tasks() {
       return true
     } catch (err) {
       setTasks((prev) => prev.filter((t) => t._id !== tempId))
-      showToast('error', err.message || 'Failed to create task.')
+      if (!handleAuthError(err)) {
+        showToast('error', err.message || 'Failed to create task.')
+      }
       return false
     } finally {
       setCreating(false)
@@ -85,7 +98,9 @@ function Tasks() {
       setTasks((prev) => prev.map((t) => (t._id === task._id ? updated : t)))
       showToast('success', updated.completed ? 'Marked complete.' : 'Marked incomplete.')
     } catch (err) {
-      showToast('error', err.message || 'Failed to update task.')
+      if (!handleAuthError(err)) {
+        showToast('error', err.message || 'Failed to update task.')
+      }
     } finally {
       setBusyId(null)
     }
@@ -119,7 +134,9 @@ function Tasks() {
       handleCancelEdit()
       showToast('success', 'Task updated.')
     } catch (err) {
-      showToast('error', err.message || 'Failed to update task.')
+      if (!handleAuthError(err)) {
+        showToast('error', err.message || 'Failed to update task.')
+      }
     } finally {
       setBusyId(null)
     }
@@ -137,7 +154,9 @@ function Tasks() {
       setPendingDelete(null)
       showToast('success', 'Task deleted.')
     } catch (err) {
-      showToast('error', err.message || 'Failed to delete task.')
+      if (!handleAuthError(err)) {
+        showToast('error', err.message || 'Failed to delete task.')
+      }
     } finally {
       setDeleting(false)
       setBusyId(null)

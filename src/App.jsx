@@ -5,8 +5,11 @@ import Footer from './components/Footer'
 import Home from './pages/Home'
 import Projects from './pages/Projects'
 import Tasks from './pages/Tasks'
+import Login from './pages/Login'
+import Register from './pages/Register'
 import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
+import ProtectedRoute from './components/ProtectedRoute'
 import './App.css'
 
 function App({ profile }) {
@@ -65,7 +68,16 @@ function App({ profile }) {
         <Routes>
           <Route path="/" element={<Home skills={skills} profile={profile} />} />
           <Route path="/projects" element={<Projects profile={profile} />} />
-          <Route path="/tasks" element={<Tasks />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route
+            path="/tasks"
+            element={
+              <ProtectedRoute>
+                <Tasks />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
