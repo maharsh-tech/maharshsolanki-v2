@@ -35,6 +35,41 @@ npm run build
 
 ---
 
+## Practical 8 – Performance Optimization and Lazy Loading
+
+### What Changed
+
+The `Projects` and `Contact` page components are now **code-split** via `React.lazy()` + `<Suspense>`. Instead of being bundled into the main JS file, each is emitted as a separate chunk that loads on-demand when the user first navigates to that route. The existing `<Spinner message="Loading page..." />` component is reused as the Suspense fallback — no new dependencies were added.
+
+### Before / After Bundle Sizes
+
+| File | Before (kB) | After (kB) | gzip Before | gzip After |
+|------|-------------|------------|-------------|------------|
+| `index-*.js` (main) | 228.88 | 228.92 | 73.31 | 73.36 |
+| `Projects-*.js` | — | 1.39 | — | 0.69 |
+| `Contact-*.js` | — | 1.69 | — | 0.84 |
+| `index-*.css` | 1.48 | 1.48 | 0.59 | 0.59 |
+| `index.html` | 0.46 | 0.46 | 0.30 | 0.30 |
+
+The main bundle size is essentially unchanged (the tiny increase is the `React.lazy`/`Suspense` + `Spinner` import overhead). Projects and Contact are now separate chunks loaded only when those routes are visited.
+
+### Slow-3G Network Tab Evidence
+
+<!-- TODO: student to paste Slow-3G Network tab screenshot here showing the lazy chunk being fetched on navigation -->
+
+### Key Questions
+
+#### 1. When does the initial bundle download vs when does a lazy chunk download?
+The initial bundle (`index-*.js`) downloads immediately when the user first loads the page. A lazy chunk (e.g. `Projects-*.js`) only downloads when the user navigates to that route for the first time. On subsequent visits the chunk is already cached by the browser.
+
+#### 2. Why does lazy loading improve perceived performance without reducing total bytes downloaded?
+The total bytes across all chunks remain the same (or slightly larger due to chunk wrapper overhead). However, perceived performance improves because the user sees the first page faster — they only pay for the code they actually need right now. Deferred routes load in the background or on-demand, so the initial paint is not blocked by code the user may never visit.
+
+#### 3. When is lazy loading not worth the added complexity?
+For very small components (a few hundred bytes) or routes that nearly every user visits on every session, the overhead of an extra HTTP request and the flash of a loading spinner outweigh the savings. It is also unnecessary when the entire application bundle is already small enough that it loads in under a second on typical connections.
+
+---
+
 ## Practical 7 – Authentication and Middleware Pipeline
 
 ### Frontend auth flow
