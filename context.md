@@ -178,7 +178,7 @@ New tasks appear immediately with a temporary `_id`; on success they are replace
 | JWT authentication (login, logout, protected `/tasks`) | Complete (Practical 7) |
 | Per-user tasks (backend `userId` scoping) | Complete |
 | Contact form | Local state only (no backend POST) |
-| Route-based lazy loading | Not started (Week 8) |
+| Route-based lazy loading | Complete (Practical 8) |
 
 ---
 
