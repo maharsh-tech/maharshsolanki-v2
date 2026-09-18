@@ -1,16 +1,18 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, lazy, Suspense } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Home from './pages/Home'
-import Projects from './pages/Projects'
 import Tasks from './pages/Tasks'
 import Login from './pages/Login'
 import Register from './pages/Register'
-import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
 import ProtectedRoute from './components/ProtectedRoute'
+import Spinner from './components/Spinner'
 import './App.css'
+
+const Projects = lazy(() => import('./pages/Projects'))
+const Contact = lazy(() => import('./pages/Contact'))
 
 function App({ profile }) {
   const studentName = (profile && (profile.displayName || profile.name)) || 'Your Name'
@@ -65,22 +67,24 @@ function App({ profile }) {
           transition: 'opacity 0.2s ease-in-out'
         }}
       >
-        <Routes>
-          <Route path="/" element={<Home skills={skills} profile={profile} />} />
-          <Route path="/projects" element={<Projects profile={profile} />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route
-            path="/tasks"
-            element={
-              <ProtectedRoute>
-                <Tasks />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Suspense fallback={<Spinner message="Loading page..." />}>
+          <Routes>
+            <Route path="/" element={<Home skills={skills} profile={profile} />} />
+            <Route path="/projects" element={<Projects profile={profile} />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route
+              path="/tasks"
+              element={
+                <ProtectedRoute>
+                  <Tasks />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
       </main>
       <Footer profile={profile} />
     </div>
