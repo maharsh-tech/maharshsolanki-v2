@@ -3,13 +3,13 @@
   "displayName": "Maharsh",
   "preferredName": "Maharsh",
   "username": "maharsh-tech",
-  "title": "Full Stack Developer | Cloud Engineer | AI Enthusiast",
+  "title": "Java Full Stack Developer | Spring Boot | React.js",
   "email": "solankimaharsh787@gmail.com",
-  "phone": "",
+  "phone": "+91-9313367891",
   "location": "Nadiad, Gujarat, India",
   "website": "https://maharsh.me",
   "resume": "/resume.pdf",
-  "bio": "Full Stack Developer, Cloud Engineer & AI Enthusiast. Crafting scalable full-stack applications, cloud-native APIs, and AI-driven systems on cloud. Currently pursuing B.Tech in Information Technology at Charusat University.",
+  "bio": "Third-year B.Tech IT student focused on Java and Spring Boot, with a Python development internship at Synent Technologies and full-stack projects using Spring Boot, React.js, PostgreSQL, and Node.js. Seeking a Java or full-stack development internship to contribute RESTful API, database design, and backend development skills.",
   "github": "https://github.com/maharsh-tech",
   "social": {
     "linkedin": "https://www.linkedin.com/in/maharsh-solanki/",
@@ -19,31 +19,36 @@
   "skills": [
     {
       "category": "Languages",
-      "items": ["C", "C++", "Java", "Python", "JavaScript", "Node.js"]
+      "items": ["Java", "Python", "JavaScript", "C", "C++", "SQL"]
+    },
+    {
+      "category": "Backend",
+      "items": ["Spring Boot", "RESTful APIs", "Firebase Authentication", "Node.js", "Express.js", "Flask", "FastAPI"]
     },
     {
       "category": "Frontend",
       "items": ["React.js", "HTML5", "CSS3"]
     },
     {
-      "category": "Backend",
-      "items": ["FastAPI", "Spring Boot", "REST APIs", "Firebase Auth"]
+      "category": "Cloud & Databases",
+      "items": ["Amazon Web Services (AWS: EC2, S3, Lambda)", "Microsoft Azure", "PostgreSQL", "MySQL", "MongoDB", "SQLite"]
     },
     {
-      "category": "Cloud",
-      "items": ["AWS (EC2, S3, Lambda)", "Microsoft Azure"]
-    },
+      "category": "Tools & Deployment",
+      "items": ["Git", "GitHub", "Postman", "VPS Deployment", "Vercel", "Netlify"]
+    }
+  ],
+  "experience": [
     {
-      "category": "Databases",
-      "items": ["MongoDB", "PostgreSQL", "MySQL"]
-    },
-    {
-      "category": "AI / ML",
-      "items": ["RAG", "LLM Integration"]
-    },
-    {
-      "category": "Tools",
-      "items": ["Git", "GitHub", "Postman", "PyroGram"]
+      "id": "synent",
+      "role": "Python Development Intern",
+      "company": "Synent Technologies Pvt. Ltd.",
+      "period": "05/2026 – 06/2026",
+      "location": "Gujarat, India",
+      "highlights": [
+        "Developed a full-stack Task Management web application using Flask, SQLite, Jinja2, HTML, CSS, and JavaScript, supporting task creation, editing, deletion, status updates, and filtering.",
+        "Implemented user authentication with Flask-Login and RESTful API endpoints, validated them with Postman, and deployed the application on a VPS using Git and GitHub."
+      ]
     }
   ],
   "education": [
@@ -51,9 +56,9 @@
       "id": "college",
       "institution": "Charusat University",
       "degree": "B.Tech in Information Technology",
-      "period": "2024 – Present",
+      "period": "Expected 2028",
       "location": "Anand, Gujarat, India",
-      "detail": "2nd Year – Currently Pursuing"
+      "detail": "3rd Year – Currently Pursuing | CGPA: 7.49"
     },
     {
       "id": "hsc",
@@ -70,80 +75,65 @@
       "location": "Nadiad, Gujarat, India"
     }
   ],
-  "experience": [],
   "projects": [
+    {
+      "id": "serveease",
+      "title": "ServEase",
+      "description": "Engineered a full-stack service marketplace in Java with a Spring Boot backend and React.js frontend, connecting users with domestic help providers. Built Spring Boot RESTful APIs for service booking workflows and integrated Firebase Authentication for secure onboarding. Modeled a normalized PostgreSQL relational schema (SQL) for service listings, provider profiles, bookings, and user verification records.",
+      "techStack": ["Java", "Spring Boot", "React.js", "PostgreSQL", "Firebase Authentication"],
+      "repoUrl": "https://github.com/maharsh-tech/ServeEase-Frontend",
+      "featured": true,
+      "metrics": [
+        "Spring Boot REST APIs",
+        "Normalized PostgreSQL Schema",
+        "Firebase Authentication"
+      ]
+    },
     {
       "id": "falixmovies",
       "title": "FalixMovies",
-      "description": "Full-stack movie browsing and streaming platform deployed on AWS, capable of handling rich media and high-volume user interactions at scale. Cloud-based content pipeline using AWS S3 and PyroGram for streaming.",
-      "techStack": ["React", "FastAPI", "MongoDB", "AWS", "PyroGram"],
+      "description": "Deployed a full-stack movie browsing and streaming platform on cloud with a React.js frontend, FastAPI RESTful API backend, and MongoDB database. Architected a cloud content pipeline using Object cloud storage for media retrieval, search, and session management.",
+      "techStack": ["React.js", "FastAPI", "MongoDB", "Object Storage", "Pyrogram"],
       "repoUrl": "https://github.com/maharsh-tech",
       "liveUrl": "https://falixmovies.com",
       "featured": true,
       "metrics": [
-        "Cloud Streaming Pipeline",
-        "Optimized REST Endpoints",
+        "Cloud Storage Pipeline",
+        "FastAPI REST Endpoints",
         "Session Management"
-      ]
-    },
-    {
-      "id": "askorgi-ai",
-      "title": "AskOrg AI",
-      "description": "AI-powered enterprise assistant for intelligent document retrieval and extraction of actionable insights from recorded meetings. Built with a RAG pipeline using ChromaDB as the vector store, centralizing organizational knowledge into a searchable system.",
-      "techStack": ["React", "FastAPI", "Python", "ChromaDB", "RAG"],
-      "repoUrl": "https://github.com/maharsh-tech/sol-frontend",
-      "featured": false,
-      "metrics": [
-        "RAG Pipeline",
-        "Meeting Intelligence",
-        "Knowledge Centralization"
-      ]
-    },
-    {
-      "id": "rag-api",
-      "title": "RAG API with FastAPI",
-      "description": "Production-ready REST API enabling natural language Q&A over user-uploaded documents using local large language models and ChromaDB vector search. Includes document ingestion, chunking, and embedding pipeline with complete developer documentation.",
-      "techStack": ["Python", "FastAPI", "ChromaDB", "LLMs", "Vector Search"],
-      "repoUrl": "https://github.com/maharsh-tech/RAG-API",
-      "liveUrl": "https://maharshsolanki.netlify.app/rag-api-maharsh",
-      "featured": false,
-      "metrics": [
-        "Document Q&A",
-        "Embedding Pipeline",
-        "Developer Docs"
-      ]
-    },
-    {
-      "id": "serveease",
-      "title": "ServEase",
-      "description": "Full-stack service marketplace connecting users with domestic help providers, featuring Firebase Auth for secure onboarding and Spring Boot REST APIs for service booking workflows. Designed with a normalized PostgreSQL schema.",
-      "techStack": ["React", "Java", "Spring Boot", "PostgreSQL", "Firebase Auth"],
-      "repoUrl": "https://github.com/maharsh-tech/ServeEase-Frontend",
-      "featured": false,
-      "metrics": [
-        "Service Booking",
-        "User Verification",
-        "Normalized Schema"
       ]
     },
     {
       "id": "hrms-portal",
       "title": "HRMS Portal",
-      "description": "Centralized HR management system built on the MERN stack with role-based access control, real-time attendance logging, and admin dashboards for workforce oversight. Automated employee onboarding and HR workflows.",
-      "techStack": ["React", "Node.js", "Express.js", "MongoDB"],
+      "description": "Delivered a centralized HR management system on the MERN stack with role-based access control (RBAC), real-time attendance logging, and admin dashboards for workforce oversight. Automated employee onboarding and HR workflows to reduce manual data entry across departments.",
+      "techStack": ["React.js", "Node.js", "Express.js", "MongoDB (MERN Stack)"],
       "repoUrl": "https://github.com/maharsh-tech/HRMS-hackathon",
       "liveUrl": "https://dayflow-brown.vercel.app/",
-      "featured": false,
+      "featured": true,
       "metrics": [
-        "Role-Based Access",
+        "Role-Based Access (RBAC)",
         "Attendance Logging",
         "Workflow Automation"
+      ]
+    },
+    {
+      "id": "askorgi-ai",
+      "title": "AskOrg AI",
+      "description": "Created an AI-powered enterprise assistant for document search and meeting insights, with a FastAPI backend and ChromaDB vector database.",
+      "techStack": ["React.js", "FastAPI", "Python", "ChromaDB"],
+      "repoUrl": "https://github.com/maharsh-tech/sol-frontend",
+      "featured": true,
+      "metrics": [
+        "Vector Search (ChromaDB)",
+        "FastAPI Backend",
+        "Document Search"
       ]
     }
   ],
   "contactPref": {
     "email": true,
-    "phone": false
+    "phone": true
   },
-  "notes": "Edit this file to update your public profile; fields left blank are optional."
+  "notes": "Synchronized with Maharsh_Solanki_Resume.pdf (3rd year B.Tech IT, Java Full Stack Developer)."
 }

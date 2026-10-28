@@ -23,71 +23,83 @@ function TaskForm({ onSubmit, submitting }) {
   }
 
   return (
-    <form className="task-form" onSubmit={handleSubmit} style={{ marginBottom: '24px' }}>
-      <div style={{ marginBottom: '12px' }}>
-        <label htmlFor="task-title" style={{ display: 'block', fontWeight: 'bold', marginBottom: '4px' }}>
-          Title
+    <form className="task-form-card" onSubmit={handleSubmit}>
+      <h2 className="task-form-title">Add New Task</h2>
+
+      <div style={{ marginBottom: '1rem' }}>
+        <label htmlFor="task-title" className="form-label">
+          Task Title <span style={{ color: 'var(--danger-solid)' }}>*</span>
         </label>
         <input
           id="task-title"
           type="text"
           className="search-input"
-          style={{ marginBottom: 0 }}
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          placeholder="Task title"
+          placeholder="e.g., Implement Redis token blacklist middleware"
           required
           disabled={submitting}
         />
       </div>
-      <div style={{ marginBottom: '12px' }}>
-        <label htmlFor="task-description" style={{ display: 'block', fontWeight: 'bold', marginBottom: '4px' }}>
-          Description
+
+      <div style={{ marginBottom: '1rem' }}>
+        <label htmlFor="task-description" className="form-label">
+          Description (Optional)
         </label>
         <textarea
           id="task-description"
           className="search-input"
-          style={{ marginBottom: 0, minHeight: '72px', resize: 'vertical' }}
+          style={{ minHeight: '68px', resize: 'vertical' }}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          placeholder="Description"
+          placeholder="Technical context, acceptance criteria, or endpoints..."
           disabled={submitting}
         />
       </div>
-      <div style={{ marginBottom: '16px' }}>
-        <label htmlFor="task-priority" style={{ display: 'block', fontWeight: 'bold', marginBottom: '4px' }}>
-          Priority
-        </label>
-        <select
-          id="task-priority"
-          className="search-input"
-          style={{ marginBottom: 0 }}
-          value={priority}
-          onChange={(e) => setPriority(e.target.value)}
-          disabled={submitting}
-        >
-          <option value="">None</option>
-          <option value="low">Low</option>
-          <option value="medium">Medium</option>
-          <option value="high">High</option>
-        </select>
+
+      <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-end', flexWrap: 'wrap' }}>
+        <div style={{ flex: '1', minWidth: '180px' }}>
+          <label htmlFor="task-priority" className="form-label">
+            Priority Level
+          </label>
+          <select
+            id="task-priority"
+            className="search-input"
+            value={priority}
+            onChange={(e) => setPriority(e.target.value)}
+            disabled={submitting}
+          >
+            <option value="">Standard (None)</option>
+            <option value="low">Low Priority</option>
+            <option value="medium">Medium Priority</option>
+            <option value="high">High Priority</option>
+          </select>
+        </div>
+
+        <div>
+          <button
+            type="submit"
+            disabled={submitting || !title.trim()}
+            className="btn-primary"
+            style={{ minHeight: '42px' }}
+          >
+            {submitting ? (
+              <>
+                <span className="spinner" style={{ width: '14px', height: '14px', borderWidth: '2px', borderTopColor: '#fff', marginRight: '6px' }} />
+                <span>Creating...</span>
+              </>
+            ) : (
+              <>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+                <span>Add Task</span>
+              </>
+            )}
+          </button>
+        </div>
       </div>
-      <button
-        type="submit"
-        disabled={submitting || !title.trim()}
-        style={{
-          backgroundColor: '#0056b3',
-          color: '#fff',
-          border: 'none',
-          padding: '10px 18px',
-          borderRadius: '4px',
-          cursor: submitting || !title.trim() ? 'not-allowed' : 'pointer',
-          fontWeight: 'bold',
-          opacity: submitting || !title.trim() ? 0.6 : 1,
-        }}
-      >
-        {submitting ? 'Adding...' : 'Add task'}
-      </button>
     </form>
   )
 }

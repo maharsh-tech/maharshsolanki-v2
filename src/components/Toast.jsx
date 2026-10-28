@@ -17,21 +17,34 @@ function Toast({ toast, onClose }) {
       aria-live="polite"
       style={{
         position: 'fixed',
-        right: '20px',
-        bottom: '20px',
+        right: '1.5rem',
+        bottom: '1.5rem',
         zIndex: 10001,
-        maxWidth: '360px',
-        padding: '12px 16px',
-        borderRadius: '6px',
-        border: `1px solid ${isError ? '#f5c6cb' : '#c3e6cb'}`,
-        backgroundColor: isError ? '#f8d7da' : '#d4edda',
-        color: isError ? '#721c24' : '#155724',
-        boxShadow: '0 4px 16px rgba(0,0,0,0.12)',
-        fontSize: '14px',
-        fontWeight: 500,
+        maxWidth: '400px',
+        padding: '0.85rem 1.25rem',
+        borderRadius: 'var(--radius-brutal)',
+        border: '2.5px solid var(--border-color)',
+        backgroundColor: isError ? 'var(--accent-red)' : 'var(--accent-green)',
+        color: isError ? '#ffffff' : '#000000',
+        boxShadow: 'var(--shadow-lg)',
+        fontSize: '0.9rem',
+        fontWeight: 800,
       }}
     >
-      <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+      <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
+        <span aria-hidden="true" style={{ display: 'flex' }}>
+          {isError ? (
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="8" x2="12" y2="12" />
+              <line x1="12" y1="16" x2="12.01" y2="16" />
+            </svg>
+          ) : (
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>
+          )}
+        </span>
         <span style={{ flex: 1 }}>{toast.message}</span>
         <button
           type="button"
@@ -41,13 +54,14 @@ function Toast({ toast, onClose }) {
             background: 'transparent',
             border: 'none',
             cursor: 'pointer',
-            fontWeight: 'bold',
+            fontWeight: '900',
             color: 'inherit',
-            padding: 0,
+            padding: '0 0 0 0.5rem',
+            fontSize: '1.25rem',
             lineHeight: 1,
           }}
         >
-          ×
+          &times;
         </button>
       </div>
     </div>

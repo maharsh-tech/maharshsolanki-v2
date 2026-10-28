@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { isAuthenticated, logout } from '../api'
 
 function NavBar({ darkMode, toggleDarkMode }) {
@@ -11,57 +11,86 @@ function NavBar({ darkMode, toggleDarkMode }) {
   }
 
   return (
-    <nav>
-      <ul style={{
-        listStyle: 'none',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        gap: '30px',
-        padding: '10px 0',
-        margin: '10px 0',
-        background: '#e4e4eb',
-        borderRadius: '5px'
-      }}>
+    <nav className="nav-container" aria-label="Main Navigation">
+      <ul className="nav-list">
         <li>
-          <Link to="/" style={{ textDecoration: 'none', fontWeight: 'bold' }}>Home</Link>
-        </li>
-        <li>
-          <Link to="/projects" style={{ textDecoration: 'none', fontWeight: 'bold' }}>Projects</Link>
-        </li>
-        <li>
-          <Link to="/tasks" style={{ textDecoration: 'none', fontWeight: 'bold' }}>Tasks</Link>
-        </li>
-        <li>
-          <Link to="/contact" style={{ textDecoration: 'none', fontWeight: 'bold' }}>Contact</Link>
-        </li>
-        <li>
-          {loggedIn ? (
-            <button type="button" onClick={handleLogout} style={{ cursor: 'pointer', fontWeight: 'bold' }}>
-              Logout
-            </button>
-          ) : (
-            <Link to="/login" style={{ textDecoration: 'none', fontWeight: 'bold' }}>Login</Link>
-          )}
-        </li>
-        <li>
-          <button 
-            type="button"
-            onClick={toggleDarkMode} 
-            style={{ 
-              cursor: 'pointer', 
-              padding: '4px 10px', 
-              fontWeight: '500', 
-              borderRadius: '4px',
-              border: '1px solid #999',
-              background: '#fff',
-              color: '#333'
-            }}
+          <NavLink
+            to="/"
+            end
+            className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}
           >
-            Toggle {darkMode ? 'Light' : 'Dark'} Mode
-          </button>
+            Home
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/projects"
+            className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}
+          >
+            Projects
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/tasks"
+            className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}
+          >
+            Tasks
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/contact"
+            className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}
+          >
+            Contact
+          </NavLink>
         </li>
       </ul>
+
+      <div className="nav-controls">
+        {loggedIn ? (
+          <button 
+            type="button" 
+            onClick={handleLogout} 
+            className="btn-auth"
+          >
+            Logout
+          </button>
+        ) : (
+          <NavLink 
+            to="/login" 
+            className={({ isActive }) => `btn-auth${isActive ? ' active' : ''}`}
+          >
+            Login
+          </NavLink>
+        )}
+
+        <button 
+          type="button"
+          onClick={toggleDarkMode}
+          className="btn-theme-toggle"
+          aria-label={`Switch to ${darkMode ? 'light' : 'dark'} mode`}
+          title={`Switch to ${darkMode ? 'light' : 'dark'} mode`}
+        >
+          {darkMode ? (
+            <>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+              </svg>
+              <span>Light</span>
+            </>
+          ) : (
+            <>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+              </svg>
+              <span>Dark</span>
+            </>
+          )}
+        </button>
+      </div>
     </nav>
   )
 }

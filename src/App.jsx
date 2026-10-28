@@ -15,59 +15,46 @@ const Projects = lazy(() => import('./pages/Projects'))
 const Contact = lazy(() => import('./pages/Contact'))
 
 function App({ profile }) {
-  const studentName = (profile && (profile.displayName || profile.name)) || 'Your Name'
+  const studentName = (profile && (profile.displayName || profile.name)) || 'Maharsh'
   const skills = (profile && profile.skills) || []
 
-  // useState for dark/light mode toggle
   const [darkMode, setDarkMode] = useState(false)
-  
-  // Navigation route transitions loading state
   const [routeLoading, setRouteLoading] = useState(false)
   const location = useLocation()
 
   const toggleDarkMode = () => {
-    setDarkMode(!darkMode)
-    document.documentElement.classList.toggle('dark-mode')
+    setDarkMode((prev) => {
+      const next = !prev
+      if (next) {
+        document.documentElement.classList.add('dark-mode')
+      } else {
+        document.documentElement.classList.remove('dark-mode')
+      }
+      return next
+    })
   }
 
-  // Trigger loading state on route change
+  // Trigger brief indicator on route change
   useEffect(() => {
     setRouteLoading(true)
     const timer = setTimeout(() => {
       setRouteLoading(false)
-    }, 300)
+    }, 200)
     return () => clearTimeout(timer)
   }, [location.pathname])
 
   return (
     <div className="app">
-      {routeLoading && (
-        <div 
-          className="route-loading-bar" 
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            height: '4px',
-            backgroundColor: '#0056b3',
-            zIndex: 9999,
-            width: '100%',
-            animation: 'loadingProgress 0.3s ease-out-in'
-          }}
-        />
-      )}
-      <Header name={studentName} darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+      {routeLoading && <div className="route-loading-bar" />}
+      <Header profile={profile} name={studentName} darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       <main 
+        className="app-main"
         style={{ 
-          padding: '20px', 
-          minHeight: '60vh', 
-          maxWidth: '800px', 
-          margin: '0 auto',
-          opacity: routeLoading ? 0.6 : 1,
-          transition: 'opacity 0.2s ease-in-out'
+          opacity: routeLoading ? 0.65 : 1,
+          transition: 'opacity 0.15s ease'
         }}
       >
-        <Suspense fallback={<Spinner message="Loading page..." />}>
+        <Suspense fallback={<Spinner message="Loading view..." />}>
           <Routes>
             <Route path="/" element={<Home skills={skills} profile={profile} />} />
             <Route path="/projects" element={<Projects profile={profile} />} />

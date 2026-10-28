@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Spinner from '../components/Spinner'
 import ErrorMessage from '../components/ErrorMessage'
@@ -20,6 +20,7 @@ function Tasks() {
   const [pendingDelete, setPendingDelete] = useState(null)
   const [deleting, setDeleting] = useState(false)
   const [toast, setToast] = useState(null)
+  const [filter, setFilter] = useState('all') // 'all' | 'active' | 'completed'
 
   const showToast = useCallback((type, message) => {
     setToast({ type, message })
@@ -59,8 +60,6 @@ function Tasks() {
   }, [fetchTasks])
 
   const handleCreate = async (body) => {
-    // Optimistic UI: show the task immediately, then reconcile with the server document
-    // or roll back the temp row if createTask fails.
     const tempId = `temp-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`
     const optimisticTask = {
       _id: tempId,
@@ -78,7 +77,7 @@ function Tasks() {
     try {
       const created = await createTask(body)
       setTasks((prev) => prev.map((t) => (t._id === tempId ? created : t)))
-      showToast('success', 'Task created.')
+      showToast('success', 'Task created successfully.')
       return true
     } catch (err) {
       setTasks((prev) => prev.filter((t) => t._id !== tempId))
@@ -96,7 +95,7 @@ function Tasks() {
     try {
       const updated = await updateTask(task._id, { completed: !task.completed })
       setTasks((prev) => prev.map((t) => (t._id === task._id ? updated : t)))
-      showToast('success', updated.completed ? 'Marked complete.' : 'Marked incomplete.')
+      showToast('success', updated.completed ? 'Marked complete.' : 'Marked active.')
     } catch (err) {
       if (!handleAuthError(err)) {
         showToast('error', err.message || 'Failed to update task.')
@@ -163,17 +162,78 @@ function Tasks() {
     }
   }
 
+  // Derived metrics
+  const totalCount = tasks.length
+  const completedCount = useMemo(() => tasks.filter((t) => t.completed).length, [tasks])
+  const activeCount = totalCount - completedCount
+
+  const visibleTasks = useMemo(() => {
+    if (filter === 'active') return tasks.filter((t) => !t.completed)
+    if (filter === 'completed') return tasks.filter((t) => t.completed)
+    return tasks
+  }, [tasks, filter])
+
   return (
-    <section className="tasks" style={{ padding: '20px 0' }}>
-      <h2 style={{ marginTop: 0, marginBottom: '20px' }}>Task Manager</h2>
+    <section className="tasks-container" aria-label="Task Manager">
+      <div className="section-header">
+        <h1 className="section-title">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M9 11l3 3L22 4" />
+            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+          </svg>
+          Task Management System
+        </h1>
+        <p className="section-desc">
+          Authenticated CRUD interface communicating with the Express & MongoDB REST API.
+        </p>
+      </div>
+
+      <div className="stats-row">
+        <div className="stat-card">
+          <div className="stat-label">Total Tasks</div>
+          <div className="stat-value">{totalCount}</div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-label">Active</div>
+          <div className="stat-value" style={{ color: 'var(--accent-primary)' }}>{activeCount}</div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-label">Completed</div>
+          <div className="stat-value" style={{ color: 'var(--success-solid)' }}>{completedCount}</div>
+        </div>
+      </div>
 
       <TaskForm onSubmit={handleCreate} submitting={creating} />
 
-      {loading && <Spinner message="Loading tasks..." />}
+      <div className="filter-bar">
+        <button
+          type="button"
+          className={`filter-btn${filter === 'all' ? ' active' : ''}`}
+          onClick={() => setFilter('all')}
+        >
+          All ({totalCount})
+        </button>
+        <button
+          type="button"
+          className={`filter-btn${filter === 'active' ? ' active' : ''}`}
+          onClick={() => setFilter('active')}
+        >
+          Active ({activeCount})
+        </button>
+        <button
+          type="button"
+          className={`filter-btn${filter === 'completed' ? ' active' : ''}`}
+          onClick={() => setFilter('completed')}
+        >
+          Completed ({completedCount})
+        </button>
+      </div>
+
+      {loading && <Spinner message="Syncing tasks from API..." />}
 
       {error && (
         <ErrorMessage
-          title="Unable to load tasks"
+          title="API Connection Error"
           message={error}
           onRetry={fetchTasks}
         />
@@ -181,7 +241,7 @@ function Tasks() {
 
       {!loading && !error && (
         <TaskList
-          tasks={tasks}
+          tasks={visibleTasks}
           busyId={busyId}
           editingId={editingId}
           editDraft={editDraft}
@@ -196,13 +256,13 @@ function Tasks() {
 
       <ConfirmDialog
         open={Boolean(pendingDelete)}
-        title="Delete task?"
+        title="Delete Task"
         message={
           pendingDelete
-            ? `Delete "${pendingDelete.title}"? This cannot be undone.`
+            ? `Are you sure you want to delete "${pendingDelete.title}"? This action cannot be reversed.`
             : ''
         }
-        confirmLabel="Delete"
+        confirmLabel="Delete Task"
         onConfirm={handleConfirmDelete}
         onCancel={() => !deleting && setPendingDelete(null)}
         busy={deleting}

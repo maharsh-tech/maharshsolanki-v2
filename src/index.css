@@ -1,58 +1,167 @@
-/* Minimal styles for dark mode and routing page structures */
+/* ==========================================================================
+   Neo-Brutalism Design Tokens & Foundation
+   Inspired by modern brutalism-ui (Dribbble): Bold black borders, hard unblurred
+   offset shadows, punchy solid accents, zero gradients, zero purple.
+   ========================================================================== */
+
+:root {
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', Menlo, Monaco, Consolas, monospace;
+
+  /* Geometry & Outlines */
+  --border-thick: 2.5px solid #000000;
+  --border-regular: 2px solid #000000;
+  --border-thin: 1.5px solid #000000;
+  --radius-brutal: 4px;
+  --radius-pill: 9999px;
+
+  /* Hard offset shadows (no blur radius) */
+  --shadow-sm: 2px 2px 0px #000000;
+  --shadow-md: 4px 4px 0px #000000;
+  --shadow-lg: 6px 6px 0px #000000;
+  --shadow-hover: 5px 5px 0px #000000;
+  --shadow-active: 1px 1px 0px #000000;
+
+  /* Light Canvas Palette (Warm newsprint / raw paper + stark pure white) */
+  --bg-page: #f7f6f0;
+  --bg-surface: #ffffff;
+  --bg-subtle: #eae8dc;
+  --bg-muted: #dedbd0;
+
+  --border-color: #000000;
+  --text-main: #000000;
+  --text-secondary: #222222;
+  --text-muted: #555555;
+
+  /* Solid Punchy Neo-Brutalist Accents (STRICTLY NO PURPLE, NO GRADIENTS) */
+  --accent-blue: #0052ff;       /* Electric International Blue */
+  --accent-yellow: #ffe600;     /* Safety / Caution Yellow */
+  --accent-green: #00c853;      /* High-Voltage Mint */
+  --accent-red: #ff3333;        /* Alert Crimson */
+  --accent-orange: #ff7700;     /* Mechanical Safety Orange */
+  --accent-cyan: #00d4ff;       /* Pure Cyan */
+
+  --accent-primary: var(--accent-blue);
+  --accent-contrast: #ffffff;
+
+  --transition-tactile: 100ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark Mode Neo-Brutalism: Deep mechanical obsidian with stark chalk borders */
+.dark-mode {
+  --border-thick: 2.5px solid #f0f2f5;
+  --border-regular: 2px solid #f0f2f5;
+  --border-thin: 1.5px solid #f0f2f5;
+
+  --shadow-sm: 2px 2px 0px #000000;
+  --shadow-md: 4px 4px 0px #000000;
+  --shadow-lg: 6px 6px 0px #000000;
+  --shadow-hover: 5px 5px 0px #000000;
+  --shadow-active: 1px 1px 0px #000000;
+
+  --bg-page: #0e1015;
+  --bg-surface: #181b22;
+  --bg-subtle: #222733;
+  --bg-muted: #2f3545;
+
+  --border-color: #f0f2f5;
+  --text-main: #ffffff;
+  --text-secondary: #e2e8f0;
+  --text-muted: #94a3b8;
+
+  --accent-blue: #3b82f6;
+  --accent-yellow: #ffd600;
+  --accent-green: #10b981;
+  --accent-red: #ef4444;
+  --accent-orange: #f97316;
+  --accent-cyan: #06b6d4;
+
+  --accent-primary: var(--accent-blue);
+  --accent-contrast: #ffffff;
+}
+
+/* Global resets & typography */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: var(--font-sans);
+  background-color: var(--bg-page);
+  color: var(--text-main);
   margin: 0;
   padding: 0;
-  transition: background-color 0.3s, color 0.3s;
+  line-height: 1.55;
+  transition: background-color 150ms ease, color 150ms ease;
 }
 
-/* Light mode default link color in nav */
-nav a {
-  color: #1a1a2e;
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-main);
+  letter-spacing: -0.03em;
+  font-weight: 800;
+  margin-top: 0;
 }
 
-/* Dark Mode class applied to root (html element) */
-.dark-mode {
-  background-color: #121212;
-  color: #ffffff;
+h1 { font-size: 2rem; line-height: 1.15; }
+h2 { font-size: 1.5rem; line-height: 1.25; }
+h3 { font-size: 1.2rem; line-height: 1.3; }
+
+p {
+  margin: 0 0 1rem 0;
+  color: var(--text-secondary);
 }
 
-.dark-mode a {
-  color: #8ab4f8;
+a {
+  color: var(--accent-primary);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  font-weight: 600;
+  transition: transform var(--transition-tactile);
 }
 
-.dark-mode header, 
-.dark-mode footer {
-  background-color: #1e1e1e;
-  border-color: #333;
+a:hover {
+  color: var(--text-main);
 }
 
-.dark-mode nav ul {
-  background-color: #2d2d2d !important;
+button, input, textarea, select {
+  font-family: inherit;
+  font-size: 0.9375rem;
+  color: inherit;
 }
 
-.dark-mode nav a {
-  color: #ffffff;
+code, pre {
+  font-family: var(--font-mono);
 }
 
-.dark-mode button, 
-.dark-mode input {
-  background-color: #333;
-  color: #fff;
-  border: 1px solid #555;
+/* Hard outline focus */
+:focus-visible {
+  outline: 3px solid var(--accent-yellow);
+  outline-offset: 2px;
 }
 
-header {
-  padding: 20px;
-  text-align: center;
-  background-color: #f4f4f9;
-  border-bottom: 1px solid #ddd;
+/* Minimal brutalist scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
 }
 
-footer {
-  padding: 15px;
-  text-align: center;
-  background-color: #f4f4f9;
-  border-top: 1px solid #ddd;
-  margin-top: 20px;
+::-webkit-scrollbar-track {
+  background: var(--bg-page);
+  border-left: 2px solid var(--border-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-main);
+  border: 2px solid var(--bg-page);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
 }

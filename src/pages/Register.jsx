@@ -24,50 +24,82 @@ function Register() {
   }
 
   return (
-    <section style={{ padding: '20px 0', maxWidth: '400px' }}>
-      <h2 style={{ marginTop: 0 }}>Register</h2>
-      <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: '12px' }}>
-          <label htmlFor="register-email" style={{ display: 'block', fontWeight: 'bold', marginBottom: '4px' }}>
-            Email
-          </label>
-          <input
-            id="register-email"
-            type="email"
-            className="search-input"
-            style={{ marginBottom: 0 }}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            disabled={submitting}
-          />
+    <div className="auth-wrapper">
+      <div className="auth-card">
+        <div className="auth-header">
+          <h1 className="auth-title">Create Account</h1>
+          <p className="auth-subtitle">Register to manage your developer tasks and workflows</p>
         </div>
-        <div style={{ marginBottom: '16px' }}>
-          <label htmlFor="register-password" style={{ display: 'block', fontWeight: 'bold', marginBottom: '4px' }}>
-            Password
-          </label>
-          <input
-            id="register-password"
-            type="password"
-            className="search-input"
-            style={{ marginBottom: 0 }}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
+
+        <form onSubmit={handleSubmit}>
+          <div style={{ marginBottom: '1rem' }}>
+            <label htmlFor="register-email" className="form-label">
+              Email Address
+            </label>
+            <input
+              id="register-email"
+              type="email"
+              className="search-input"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@example.com"
+              required
+              disabled={submitting}
+            />
+          </div>
+
+          <div style={{ marginBottom: '1.25rem' }}>
+            <label htmlFor="register-password" className="form-label">
+              Password
+            </label>
+            <input
+              id="register-password"
+              type="password"
+              className="search-input"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="••••••••"
+              required
+              disabled={submitting}
+            />
+          </div>
+
+          {error && (
+            <div
+              style={{
+                backgroundColor: 'var(--accent-red)',
+                color: '#ffffff',
+                border: '2px solid var(--border-color)',
+                boxShadow: '2px 2px 0px var(--border-color)',
+                padding: '0.65rem 0.85rem',
+                borderRadius: 'var(--radius-brutal)',
+                fontSize: '0.85rem',
+                fontWeight: 700,
+                marginBottom: '1rem',
+              }}
+            >
+              {error}
+            </div>
+          )}
+
+          <button
+            type="submit"
             disabled={submitting}
-          />
-        </div>
-        {error && (
-          <p style={{ color: '#721c24', fontSize: '14px', marginBottom: '12px' }}>{error}</p>
-        )}
-        <button type="submit" disabled={submitting} style={{ padding: '10px 18px', fontWeight: 'bold' }}>
-          {submitting ? 'Creating account...' : 'Create account'}
-        </button>
-      </form>
-      <p style={{ marginTop: '16px', fontSize: '14px' }}>
-        Already have an account? <Link to="/login">Login</Link>
-      </p>
-    </section>
+            className="btn-primary"
+            style={{ width: '100%', padding: '0.7rem' }}
+          >
+            {submitting ? 'Registering...' : 'Create Account'}
+          </button>
+        </form>
+
+        <p style={{ marginTop: '1.25rem', textAlign: 'center', fontSize: '0.875rem', color: 'var(--text-muted)' }}>
+          Already have an account?{' '}
+          <Link to="/login" style={{ fontWeight: 600 }}>
+            Sign in
+          </Link>
+        </p>
+      </div>
+    </div>
   )
 }
 

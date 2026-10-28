@@ -12,14 +12,24 @@ function TaskList({
 }) {
   if (!tasks.length) {
     return (
-      <p style={{ color: '#666', fontSize: '14px' }}>
-        No tasks yet.
-      </p>
+      <div className="craft-card" style={{ textAlign: 'center', padding: '2.5rem 1.5rem' }}>
+        <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9375rem' }}>
+          No tasks found matching this criteria. Create one above to get started.
+        </p>
+      </div>
     )
   }
 
+  const getPriorityClass = (priority) => {
+    const p = String(priority).toLowerCase()
+    if (p === 'high') return 'priority-pill priority-high'
+    if (p === 'medium') return 'priority-pill priority-medium'
+    if (p === 'low') return 'priority-pill priority-low'
+    return 'priority-pill'
+  }
+
   return (
-    <ul className="task-list" style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+    <ul className="task-list" aria-label="Task items">
       {tasks.map((task) => {
         const id = task._id
         const isBusy = busyId === id
@@ -29,104 +39,138 @@ function TaskList({
         return (
           <li
             key={id}
-            className="repo-card"
-            style={{
-              opacity: isOptimistic ? 0.75 : 1,
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '10px',
-            }}
+            className={`task-item-card${task.completed ? ' completed' : ''}`}
+            style={{ opacity: isOptimistic ? 0.7 : 1 }}
           >
             {isEditing ? (
-              <>
-                <input
-                  className="search-input"
-                  style={{ marginBottom: 0 }}
-                  value={editDraft.title}
-                  onChange={(e) => onEditDraftChange({ ...editDraft, title: e.target.value })}
-                  disabled={isBusy}
-                  aria-label="Edit title"
-                />
-                <textarea
-                  className="search-input"
-                  style={{ marginBottom: 0, minHeight: '60px', resize: 'vertical' }}
-                  value={editDraft.description}
-                  onChange={(e) => onEditDraftChange({ ...editDraft, description: e.target.value })}
-                  disabled={isBusy}
-                  aria-label="Edit description"
-                />
-                <select
-                  className="search-input"
-                  style={{ marginBottom: 0 }}
-                  value={editDraft.priority}
-                  onChange={(e) => onEditDraftChange({ ...editDraft, priority: e.target.value })}
-                  disabled={isBusy}
-                  aria-label="Edit priority"
-                >
-                  <option value="">None</option>
-                  <option value="low">Low</option>
-                  <option value="medium">Medium</option>
-                  <option value="high">High</option>
-                </select>
-                <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-                  <button type="button" onClick={() => onSaveEdit(id)} disabled={isBusy || !editDraft.title.trim()}>
-                    {isBusy ? 'Saving...' : 'Save'}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                <div>
+                  <label htmlFor={`edit-title-${id}`} className="form-label">
+                    Edit Title
+                  </label>
+                  <input
+                    id={`edit-title-${id}`}
+                    className="search-input"
+                    value={editDraft.title}
+                    onChange={(e) => onEditDraftChange({ ...editDraft, title: e.target.value })}
+                    disabled={isBusy}
+                    aria-label="Edit task title"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor={`edit-desc-${id}`} className="form-label">
+                    Edit Description
+                  </label>
+                  <textarea
+                    id={`edit-desc-${id}`}
+                    className="search-input"
+                    style={{ minHeight: '60px', resize: 'vertical' }}
+                    value={editDraft.description}
+                    onChange={(e) => onEditDraftChange({ ...editDraft, description: e.target.value })}
+                    disabled={isBusy}
+                    aria-label="Edit task description"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor={`edit-priority-${id}`} className="form-label">
+                    Priority
+                  </label>
+                  <select
+                    id={`edit-priority-${id}`}
+                    className="search-input"
+                    value={editDraft.priority}
+                    onChange={(e) => onEditDraftChange({ ...editDraft, priority: e.target.value })}
+                    disabled={isBusy}
+                    aria-label="Edit task priority"
+                  >
+                    <option value="">None</option>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                  </select>
+                </div>
+
+                <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.25rem' }}>
+                  <button
+                    type="button"
+                    className="btn-primary"
+                    onClick={() => onSaveEdit(id)}
+                    disabled={isBusy || !editDraft.title.trim()}
+                  >
+                    {isBusy ? 'Saving...' : 'Save Changes'}
                   </button>
-                  <button type="button" onClick={onCancelEdit} disabled={isBusy}>
+                  <button
+                    type="button"
+                    className="btn-secondary"
+                    onClick={onCancelEdit}
+                    disabled={isBusy}
+                  >
                     Cancel
                   </button>
                 </div>
-              </>
+              </div>
             ) : (
               <>
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                <div className="task-row-main">
                   <input
                     type="checkbox"
+                    className="task-checkbox"
                     checked={Boolean(task.completed)}
                     onChange={() => onToggleComplete(task)}
                     disabled={isBusy || isOptimistic}
-                    aria-label={`Mark ${task.title} complete`}
-                    style={{ marginTop: '4px' }}
+                    aria-label={`Mark "${task.title}" as ${task.completed ? 'incomplete' : 'complete'}`}
                   />
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <h3
-                      style={{
-                        margin: '0 0 6px 0',
-                        textDecoration: task.completed ? 'line-through' : 'none',
-                        color: task.completed ? '#888' : 'inherit',
-                      }}
-                    >
+                  <div className="task-content">
+                    <h3 className={`task-title-text${task.completed ? ' completed' : ''}`}>
                       {task.title}
                     </h3>
                     {task.description && (
-                      <p style={{ margin: '0 0 8px 0', fontSize: '14px', color: '#555' }}>
+                      <p className="task-desc-text">
                         {task.description}
                       </p>
                     )}
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', alignItems: 'center' }}>
+                    <div className="task-meta-bar">
                       {task.priority && (
-                        <span className="repo-badge">{task.priority}</span>
+                        <span className={getPriorityClass(task.priority)}>
+                          {task.priority}
+                        </span>
                       )}
                       {task.createdAt && (
-                        <span style={{ fontSize: '12px', color: '#777' }}>
-                          {new Date(task.createdAt).toLocaleString()}
+                        <span style={{ fontFamily: 'var(--font-mono)' }}>
+                          {new Date(task.createdAt).toLocaleDateString(undefined, {
+                            month: 'short',
+                            day: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit',
+                          })}
                         </span>
                       )}
                       {isOptimistic && (
-                        <span style={{ fontSize: '12px', color: '#0056b3' }}>Saving...</span>
+                        <span style={{ color: 'var(--accent-primary)', fontWeight: 600 }}>
+                          Syncing with API...
+                        </span>
                       )}
                     </div>
                   </div>
                 </div>
-                <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-                  <button type="button" onClick={() => onStartEdit(task)} disabled={isBusy || isOptimistic}>
+
+                <div className="task-actions">
+                  <button
+                    type="button"
+                    className="btn-secondary"
+                    style={{ padding: '0.3rem 0.65rem', fontSize: '0.8125rem' }}
+                    onClick={() => onStartEdit(task)}
+                    disabled={isBusy || isOptimistic}
+                  >
                     Edit
                   </button>
                   <button
                     type="button"
+                    className="btn-danger-outline"
                     onClick={() => onRequestDelete(task)}
                     disabled={isBusy || isOptimistic}
-                    style={{ color: '#721c24' }}
                   >
                     {isBusy ? 'Working...' : 'Delete'}
                   </button>

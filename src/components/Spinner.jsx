@@ -1,17 +1,35 @@
-import React from 'react'
-
-function Spinner({ message = "Fetching repositories from GitHub..." }) {
+function Spinner({ message = "Loading content..." }) {
   return (
-    <div className="spinner-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px 0' }}>
-      <div className="spinner" style={{
-        width: '40px',
-        height: '40px',
-        border: '4px solid rgba(0, 0, 0, 0.1)',
-        borderTop: '4px solid #0056b3',
-        borderRadius: '50%',
-        animation: 'spin 1s linear infinite'
-      }} />
-      <p style={{ marginTop: '15px', color: '#666', fontSize: '14px', fontWeight: '500' }}>
+    <div
+      role="status"
+      aria-live="polite"
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '3rem 0',
+      }}
+    >
+      <div
+        className="spinner"
+        style={{
+          width: '36px',
+          height: '36px',
+          border: '3px solid var(--border-light)',
+          borderTopColor: 'var(--accent-primary)',
+          borderRadius: '50%',
+          animation: 'spin 0.8s linear infinite',
+        }}
+      />
+      <p
+        style={{
+          marginTop: '1rem',
+          color: 'var(--text-muted)',
+          fontSize: '0.875rem',
+          fontWeight: 500,
+        }}
+      >
         {message}
       </p>
     </div>
