@@ -177,14 +177,11 @@ function Tasks() {
     <section className="tasks-container" aria-label="Task Manager">
       <div className="section-header">
         <h1 className="section-title">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="M9 11l3 3L22 4" />
-            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
-          </svg>
+          <span className="section-index">// TASK_OPS</span>
           Task Management System
         </h1>
         <p className="section-desc">
-          Authenticated CRUD interface communicating with the Express & MongoDB REST API.
+          Authenticated CRUD interface communicating with the Express &amp; MongoDB REST API.
         </p>
       </div>
 
