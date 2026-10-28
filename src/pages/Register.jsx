@@ -25,10 +25,10 @@ function Register() {
 
   return (
     <div className="auth-wrapper">
-      <div className="auth-card">
+      <div className="monolith-card auth-card">
         <div className="auth-header">
           <h1 className="auth-title">Create Account</h1>
-          <p className="auth-subtitle">Register to manage your developer tasks and workflows</p>
+          <p className="auth-subtitle">Register to initialize scoped developer task operations</p>
         </div>
 
         <form onSubmit={handleSubmit}>

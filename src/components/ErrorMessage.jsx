@@ -2,42 +2,38 @@ function ErrorMessage({ title = 'Unable to load data', message, onRetry }) {
   return (
     <div
       role="alert"
+      className="monolith-card"
       style={{
-        border: '2.5px solid var(--border-color)',
-        backgroundColor: 'var(--bg-surface)',
-        color: 'var(--text-main)',
-        boxShadow: 'var(--shadow-md)',
-        padding: '1.75rem',
-        borderRadius: 'var(--radius-brutal)',
-        margin: '1.75rem 0',
+        borderColor: 'var(--accent-red)',
+        margin: '1.5rem 0',
         textAlign: 'center',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: '0.85rem',
+        gap: '0.75rem',
       }}
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', justifyContent: 'center' }}>
         <div
           style={{
-            width: '32px',
-            height: '32px',
-            backgroundColor: 'var(--accent-red)',
-            color: '#ffffff',
-            border: '2px solid var(--border-color)',
-            borderRadius: 'var(--radius-brutal)',
+            width: '28px',
+            height: '28px',
+            backgroundColor: 'rgba(239, 68, 68, 0.15)',
+            color: 'var(--accent-red)',
+            border: '1px solid var(--accent-red)',
+            borderRadius: 'var(--radius-sm)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
           }}
         >
           <svg
-            width="18"
-            height="18"
+            width="16"
+            height="16"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            strokeWidth="2.5"
+            strokeWidth="2.2"
             strokeLinecap="round"
             strokeLinejoin="round"
             aria-hidden="true"
@@ -47,9 +43,9 @@ function ErrorMessage({ title = 'Unable to load data', message, onRetry }) {
             <line x1="12" y1="17" x2="12.01" y2="17" />
           </svg>
         </div>
-        <h3 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 900 }}>{title}</h3>
+        <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 800 }}>{title}</h3>
       </div>
-      <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--text-secondary)', maxWidth: '500px', fontWeight: 600 }}>
+      <p style={{ margin: 0, fontSize: '0.875rem', color: 'var(--text-secondary)', maxWidth: '480px' }}>
         {message || 'An unexpected network error occurred while communicating with the service.'}
       </p>
       {onRetry && (
@@ -57,11 +53,11 @@ function ErrorMessage({ title = 'Unable to load data', message, onRetry }) {
           type="button"
           onClick={onRetry}
           className="btn-danger"
-          style={{ marginTop: '0.5rem', padding: '0.5rem 1.15rem' }}
+          style={{ marginTop: '0.4rem', padding: '0.45rem 1rem', fontSize: '0.75rem' }}
         >
           <svg
-            width="14"
-            height="14"
+            width="12"
+            height="12"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -72,7 +68,7 @@ function ErrorMessage({ title = 'Unable to load data', message, onRetry }) {
           >
             <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" />
           </svg>
-          Try Again
+          Retry Connection
         </button>
       )}
     </div>

@@ -25,10 +25,10 @@ function Login() {
 
   return (
     <div className="auth-wrapper">
-      <div className="auth-card">
+      <div className="monolith-card auth-card">
         <div className="auth-header">
           <h1 className="auth-title">Account Login</h1>
-          <p className="auth-subtitle">Sign in to access your scoped tasks and projects</p>
+          <p className="auth-subtitle">Authenticate to access scoped task operations</p>
         </div>
 
         <form onSubmit={handleSubmit}>

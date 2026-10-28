@@ -1,10 +1,11 @@
 import About from '../components/About'
 import Experience from '../components/Experience'
 import Skills from '../components/Skills'
+import CodingActivity from '../components/CodingActivity'
 import Education from '../components/Education'
 import Spinner from '../components/Spinner'
 
-function Home({ skills, profile }) {
+function Home({ skills, profile, darkMode }) {
   if (!profile) {
     return <Spinner message="Loading portfolio data..." />
   }
@@ -14,6 +15,7 @@ function Home({ skills, profile }) {
       <About profile={profile} />
       <Experience profile={profile} />
       <Skills skills={skills} />
+      <CodingActivity darkMode={darkMode} />
       <Education profile={profile} />
     </div>
   )

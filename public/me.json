@@ -5,10 +5,10 @@
   "username": "maharsh-tech",
   "title": "Java Full Stack Developer | Spring Boot | React.js",
   "email": "solankimaharsh787@gmail.com",
-  "phone": "+91-9313367891",
+  "phone": "",
   "location": "Nadiad, Gujarat, India",
   "website": "https://maharsh.me",
-  "resume": "/resume.pdf",
+  "resume": "https://drive.google.com/file/d/1L_Ro5xgNu5w3nI9Twt13uUx4npPCo3Ye/view",
   "bio": "Third-year B.Tech IT student focused on Java and Spring Boot, with a Python development internship at Synent Technologies and full-stack projects using Spring Boot, React.js, PostgreSQL, and Node.js. Seeking a Java or full-stack development internship to contribute RESTful API, database design, and backend development skills.",
   "github": "https://github.com/maharsh-tech",
   "social": {
@@ -58,12 +58,12 @@
       "degree": "B.Tech in Information Technology",
       "period": "Expected 2028",
       "location": "Anand, Gujarat, India",
-      "detail": "3rd Year – Currently Pursuing | CGPA: 7.49"
+      "detail": "3rd Year – Currently Pursuing | CGPA: [7.49]"
     },
     {
       "id": "hsc",
       "institution": "Unique School of Science",
-      "degree": "Higher Secondary Certificate (HSC) – Science Stream",
+      "degree": "Higher Secondary Certificate (HSC), Science",
       "period": "Completed 2024",
       "location": "Nadiad, Gujarat, India"
     },
@@ -77,19 +77,6 @@
   ],
   "projects": [
     {
-      "id": "serveease",
-      "title": "ServEase",
-      "description": "Engineered a full-stack service marketplace in Java with a Spring Boot backend and React.js frontend, connecting users with domestic help providers. Built Spring Boot RESTful APIs for service booking workflows and integrated Firebase Authentication for secure onboarding. Modeled a normalized PostgreSQL relational schema (SQL) for service listings, provider profiles, bookings, and user verification records.",
-      "techStack": ["Java", "Spring Boot", "React.js", "PostgreSQL", "Firebase Authentication"],
-      "repoUrl": "https://github.com/maharsh-tech/ServeEase-Frontend",
-      "featured": true,
-      "metrics": [
-        "Spring Boot REST APIs",
-        "Normalized PostgreSQL Schema",
-        "Firebase Authentication"
-      ]
-    },
-    {
       "id": "falixmovies",
       "title": "FalixMovies",
       "description": "Deployed a full-stack movie browsing and streaming platform on cloud with a React.js frontend, FastAPI RESTful API backend, and MongoDB database. Architected a cloud content pipeline using Object cloud storage for media retrieval, search, and session management.",
@@ -99,8 +86,21 @@
       "featured": true,
       "metrics": [
         "Cloud Storage Pipeline",
-        "FastAPI REST Endpoints",
+        "FastAPI RESTful API",
         "Session Management"
+      ]
+    },
+    {
+      "id": "serveease",
+      "title": "ServEase",
+      "description": "Engineered a full-stack service marketplace in Java with a Spring Boot backend and React.js frontend, connecting users with domestic help providers. Built Spring Boot RESTful APIs for service booking workflows and integrated Firebase Authentication for secure user onboarding. Modeled a normalized PostgreSQL relational schema (SQL) for service listings, provider profiles, bookings, and user verification records.",
+      "techStack": ["Java", "Spring Boot", "React.js", "PostgreSQL", "Firebase Authentication"],
+      "repoUrl": "https://github.com/maharsh-tech/ServeEase-Frontend",
+      "featured": true,
+      "metrics": [
+        "Spring Boot Backend",
+        "PostgreSQL Normalized Schema",
+        "Firebase Authentication"
       ]
     },
     {
@@ -114,7 +114,7 @@
       "metrics": [
         "Role-Based Access (RBAC)",
         "Attendance Logging",
-        "Workflow Automation"
+        "MERN Stack"
       ]
     },
     {
@@ -127,13 +127,13 @@
       "metrics": [
         "Vector Search (ChromaDB)",
         "FastAPI Backend",
-        "Document Search"
+        "Document Insights"
       ]
     }
   ],
   "contactPref": {
     "email": true,
-    "phone": true
+    "phone": false
   },
-  "notes": "Synchronized with Maharsh_Solanki_Resume.pdf (3rd year B.Tech IT, Java Full Stack Developer)."
+  "notes": "Synchronized strictly with Maharsh_Solanki_Resume.pdf. No phone number included."
 }

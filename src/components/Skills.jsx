@@ -2,27 +2,24 @@ function Skills({ skills = [] }) {
   if (!skills.length) return null
 
   return (
-    <section className="skills-container" aria-label="Technical Skills">
-      <div className="section-header">
-        <h2 className="section-title">
-          <span className="section-index">02 //</span>
-          Technical Matrix
-        </h2>
-        <p className="section-desc">Languages, Spring Boot backend, cloud pipelines, and engineering toolchain.</p>
+    <section className="monolith-section" id="skills" aria-label="Technical Skills">
+      <div className="monolith-section-header">
+        <h2 className="monolith-section-title">Technical Skills</h2>
+        <p className="monolith-section-subtitle">
+          Core languages, frameworks, cloud platforms, and developer tools from resume.
+        </p>
       </div>
 
-      <div className="skills-grid">
+      <div className="skills-monolith-grid">
         {skills.map((skillGroup, groupIndex) => (
-          <div key={groupIndex} className="skill-category-card">
-            <h3 className="skill-category-title">
-              <span>{skillGroup.category}</span>
-              <span style={{ fontSize: '0.75rem', fontWeight: 900, color: 'var(--accent-red)' }}>
-                [{skillGroup.items.length}]
-              </span>
-            </h3>
-            <div className="skill-pills">
+          <div key={groupIndex} className="monolith-card skill-monolith-card">
+            <div className="skill-card-top">
+              <span className="skill-cat-title">{skillGroup.category}</span>
+              <span className="skill-count-glyph">{skillGroup.items.length} skills</span>
+            </div>
+            <div className="skill-chips-wrap">
               {skillGroup.items.map((skill, index) => (
-                <span key={index} className="skill-pill">
+                <span key={index} className="skill-chip-monolith">
                   {skill}
                 </span>
               ))}

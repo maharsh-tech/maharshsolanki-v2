@@ -20,32 +20,33 @@ function Toast({ toast, onClose }) {
         right: '1.5rem',
         bottom: '1.5rem',
         zIndex: 10001,
-        maxWidth: '400px',
-        padding: '0.85rem 1.25rem',
-        borderRadius: 'var(--radius-brutal)',
-        border: '2.5px solid var(--border-color)',
-        backgroundColor: isError ? 'var(--accent-red)' : 'var(--accent-green)',
-        color: isError ? '#ffffff' : '#000000',
-        boxShadow: 'var(--shadow-lg)',
-        fontSize: '0.9rem',
-        fontWeight: 800,
+        maxWidth: '380px',
+        padding: '0.85rem 1.15rem',
+        borderRadius: 'var(--radius-sm)',
+        border: `1px solid ${isError ? 'var(--accent-red)' : 'var(--accent-green)'}`,
+        backgroundColor: 'var(--bg-surface-elevated)',
+        color: isError ? 'var(--accent-red)' : 'var(--accent-green)',
+        boxShadow: 'var(--shadow-card)',
+        fontFamily: 'var(--font-mono)',
+        fontSize: '0.825rem',
+        fontWeight: 700,
       }}
     >
       <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
         <span aria-hidden="true" style={{ display: 'flex' }}>
           {isError ? (
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="12" r="10" />
               <line x1="12" y1="8" x2="12" y2="12" />
               <line x1="12" y1="16" x2="12.01" y2="16" />
             </svg>
           ) : (
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M20 6L9 17l-5-5" />
             </svg>
           )}
         </span>
-        <span style={{ flex: 1 }}>{toast.message}</span>
+        <span style={{ flex: 1, color: 'var(--text-main)' }}>{toast.message}</span>
         <button
           type="button"
           onClick={onClose}
@@ -55,9 +56,9 @@ function Toast({ toast, onClose }) {
             border: 'none',
             cursor: 'pointer',
             fontWeight: '900',
-            color: 'inherit',
+            color: 'var(--text-muted)',
             padding: '0 0 0 0.5rem',
-            fontSize: '1.25rem',
+            fontSize: '1.1rem',
             lineHeight: 1,
           }}
         >

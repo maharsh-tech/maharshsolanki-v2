@@ -3,32 +3,31 @@ function Experience({ profile }) {
   if (!experience.length) return null
 
   return (
-    <section className="education-container" aria-label="Internship Experience">
-      <div className="section-header">
-        <h2 className="section-title">
-          <span className="section-index">01 //</span>
-          Industry Experience
-        </h2>
-        <p className="section-desc">Production software development internships and engineering work.</p>
+    <section className="monolith-section" id="experience" aria-label="Internship Experience">
+      <div className="monolith-section-header">
+        <h2 className="monolith-section-title">Industry Experience</h2>
+        <p className="monolith-section-subtitle">
+          Professional software development internship from resume.
+        </p>
       </div>
 
-      <div className="education-timeline">
+      <div className="monolith-card-stack">
         {experience.map((item, index) => (
-          <article key={item.id || index} className="education-item">
-            <div className="education-header-row">
-              <h3 className="education-institution">{item.role}</h3>
-              <span className="education-period-badge">
-                {item.period}
-              </span>
+          <article key={item.id || index} className="monolith-card item-monolith">
+            <div className="item-monolith-header">
+              <div>
+                <h3 className="item-title">{item.role}</h3>
+                <div className="item-org-line">{item.company} &bull; {item.location}</div>
+              </div>
+              <div className="item-period-pill">{item.period}</div>
             </div>
-            <div className="education-degree" style={{ color: 'var(--text-main)', fontWeight: 800 }}>
-              {item.company} &bull; {item.location}
-            </div>
+
             {item.highlights && item.highlights.length > 0 && (
-              <ul style={{ margin: '0.65rem 0 0', paddingLeft: '1.25rem', color: 'var(--text-secondary)' }}>
+              <ul className="item-highlights-list">
                 {item.highlights.map((point, idx) => (
-                  <li key={idx} style={{ marginBottom: '0.4rem', fontSize: '0.9rem', lineHeight: 1.5, fontWeight: 600 }}>
-                    {point}
+                  <li key={idx} className="item-highlight-point">
+                    <span className="bullet-dash">&bull;</span>
+                    <span>{point}</span>
                   </li>
                 ))}
               </ul>

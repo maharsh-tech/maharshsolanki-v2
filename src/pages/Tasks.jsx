@@ -174,14 +174,11 @@ function Tasks() {
   }, [tasks, filter])
 
   return (
-    <section className="tasks-container" aria-label="Task Manager">
-      <div className="section-header">
-        <h1 className="section-title">
-          <span className="section-index">// TASK_OPS</span>
-          Task Management System
-        </h1>
-        <p className="section-desc">
-          Authenticated CRUD interface communicating with the Express &amp; MongoDB REST API.
+    <section className="monolith-section" aria-label="Task Manager">
+      <div className="monolith-section-header">
+        <h1 className="monolith-section-title">Task Operations Dashboard</h1>
+        <p className="monolith-section-subtitle">
+          Authenticated REST API interface communicating with Express &amp; MongoDB Atlas backend.
         </p>
       </div>
 

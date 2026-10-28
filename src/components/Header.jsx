@@ -6,25 +6,18 @@ function Header({ profile, name, darkMode, toggleDarkMode }) {
   const title = (profile && profile.title) || 'Java Full Stack Developer | Spring Boot | React.js'
 
   return (
-    <>
-      <div className="brutalist-ticker" aria-hidden="true">
-        <div className="ticker-track">
-          // 3RD YEAR B.TECH IT // JAVA FULL STACK // SPRING BOOT // REACT.JS // POSTGRESQL // FASTAPI // DOCKER &amp; CLOUD // SYNENT TECHNOLOGIES INTERN // CHARUSAT UNIVERSITY // // 3RD YEAR B.TECH IT // JAVA FULL STACK // SPRING BOOT // REACT.JS // POSTGRESQL // FASTAPI // DOCKER &amp; CLOUD // SYNENT TECHNOLOGIES INTERN // CHARUSAT UNIVERSITY //
-        </div>
+    <header className="site-header">
+      <div className="site-header-inner">
+        <Link to="/" className="brand-section">
+          <div className="brand-avatar" aria-hidden="true">MS</div>
+          <div className="brand-meta">
+            <span className="brand-name">{displayName}</span>
+            <span className="brand-role">{title.split('|')[0].trim()}</span>
+          </div>
+        </Link>
+        <NavBar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       </div>
-      <header className="site-header">
-        <div className="site-header-inner">
-          <Link to="/" className="brand-section">
-            <div className="brand-avatar" aria-hidden="true">MS</div>
-            <div className="brand-meta">
-              <span className="brand-name">{displayName}</span>
-              <span className="brand-role">{title.split('|')[0].trim()}</span>
-            </div>
-          </Link>
-          <NavBar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-        </div>
-      </header>
-    </>
+    </header>
   )
 }
 

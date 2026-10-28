@@ -12,9 +12,9 @@ function TaskList({
 }) {
   if (!tasks.length) {
     return (
-      <div className="craft-card" style={{ textAlign: 'center', padding: '2.5rem 1.5rem' }}>
-        <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9375rem' }}>
-          No tasks found matching this criteria. Create one above to get started.
+      <div className="monolith-card" style={{ textAlign: 'center', padding: '2.5rem 1.5rem' }}>
+        <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.8875rem', fontFamily: 'var(--font-mono)' }}>
+          // NO TASKS BUFFERED. CREATE A NEW TASK ENTRY ABOVE.
         </p>
       </div>
     )

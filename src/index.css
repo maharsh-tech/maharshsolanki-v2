@@ -1,85 +1,82 @@
 /* ==========================================================================
-   Raw Swiss-Punk / Anti-Design Brutalism
-   Directly derived from the "BREAK DESIGN RULES" editorial aesthetic:
-   - Oversized heavy display typography (Syne / Space Grotesk)
-   - Raw concrete / uncoated paper canvas (#EBEAE4)
-   - Pitch-black stark contrast (#0A0A0A)
-   - High-voltage signal red (#FF3333) outlines and badges
-   - Strictly NO purple, strictly NO gradients
+   Cyber-Editorial Monolith Design System
+   Inspired directly by dark tech brutalist phone-cards (Dribbble reference):
+   - Deep Obsidian Jet Black (#08080A)
+   - Razor-Thin Precision Hairline Borders
+   - Stark High-Contrast Monochrome & Electric Cobalt (#0066FF) Accents
+   - Crisp monolithic card architecture
+   - Strictly NO purple, strictly NO muddy AI gradients
    ========================================================================== */
 
 :root {
-  --font-display: 'Syne', 'Space Grotesk', sans-serif;
+  --font-display: 'Syne', 'Space Grotesk', -apple-system, sans-serif;
   --font-sans: 'Space Grotesk', 'Plus Jakarta Sans', -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
   /* Geometry & Outlines */
-  --border-thick: 3px solid var(--border-color);
-  --border-medium: 2px solid var(--border-color);
-  --border-red: 2.5px solid var(--accent-red);
-  --radius-brutal: 0px; /* Sharp editorial brutalist geometry */
+  --radius-card: 12px;
+  --radius-sm: 6px;
+  --radius-pill: 9999px;
 
-  /* Hard offset shadows (pure 0-blur) */
-  --shadow-sm: 2.5px 2.5px 0px var(--border-color);
-  --shadow-md: 4.5px 4.5px 0px var(--border-color);
-  --shadow-lg: 7px 7px 0px var(--border-color);
-  --shadow-red: 4.5px 4.5px 0px var(--accent-red);
-  --shadow-active: 1px 1px 0px var(--border-color);
-
-  /* Light Canvas Palette (Raw concrete & paper + stark ink + electric red) */
-  --bg-page: #ebeae4;
+  /* Light Theme (Crisp Architectural Minimalist / Silver) */
+  --bg-page: #f2f2f5;
   --bg-surface: #ffffff;
-  --bg-surface-dark: #0a0a0a;
-  --bg-subtle: #dfddd5;
-  --bg-muted: #d0ceca;
+  --bg-surface-elevated: #fafafc;
+  --bg-subtle: #e6e6ec;
+  --bg-muted: #dcdce4;
 
-  --border-color: #0a0a0a;
-  --text-main: #0a0a0a;
-  --text-secondary: #262626;
-  --text-muted: #555555;
+  --border-hairline: 1px solid #d4d4dc;
+  --border-strong: 1.5px solid #09090b;
+  --border-color: #d4d4dc;
+
+  --text-main: #09090b;
+  --text-secondary: #27272a;
+  --text-muted: #71717a;
   --text-inverse: #ffffff;
 
-  /* Signal Red Accent (Direct reference match) */
-  --accent-red: #ff3333;
-  --accent-red-hover: #e02020;
-  --accent-primary: var(--accent-red);
-  --accent-yellow: #ffe600;
+  --accent-blue: #0066ff;
+  --accent-cyan: #00e5ff;
   --accent-green: #00d26a;
-
-  --transition-tactile: 80ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Dark Canvas Palette (Mechanical Obsidian + Stark Chalk + Signal Red) */
-.dark-mode {
-  --bg-page: #0a0b0e;
-  --bg-surface: #14161d;
-  --bg-surface-dark: #050608;
-  --bg-subtle: #1c202a;
-  --bg-muted: #282d3b;
-
-  --border-color: #f2f4f7;
-  --border-thick: 3px solid var(--border-color);
-  --border-medium: 2px solid var(--border-color);
-
-  --shadow-sm: 2.5px 2.5px 0px #000000;
-  --shadow-md: 4.5px 4.5px 0px #000000;
-  --shadow-lg: 7px 7px 0px #000000;
-  --shadow-red: 4.5px 4.5px 0px var(--accent-red);
-  --shadow-active: 1px 1px 0px #000000;
-
-  --text-main: #f2f4f7;
-  --text-secondary: #d1d5db;
-  --text-muted: #9ca3af;
-  --text-inverse: #0a0a0a;
-
-  --accent-red: #ff3b30;
-  --accent-red-hover: #ff5247;
-  --accent-primary: var(--accent-red);
   --accent-yellow: #ffd600;
-  --accent-green: #10b981;
+  --accent-red: #ff3333;
+
+  --accent-primary: var(--accent-blue);
+
+  --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.06);
+  --shadow-active: 0 1px 3px rgba(0, 0, 0, 0.12);
+
+  --transition-smooth: 140ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Global resets & typography */
+/* Dark Theme (Obsidian Monolith — The Primary Reference Mode) */
+.dark-mode {
+  --bg-page: #08080a;
+  --bg-surface: #101014;
+  --bg-surface-elevated: #16161b;
+  --bg-subtle: #1c1c23;
+  --bg-muted: #272732;
+
+  --border-hairline: 1px solid #23232b;
+  --border-strong: 1.5px solid #3f3f4c;
+  --border-color: #23232b;
+
+  --text-main: #ffffff;
+  --text-secondary: #d4d4d8;
+  --text-muted: #71717a;
+  --text-inverse: #08080a;
+
+  --accent-blue: #0066ff;
+  --accent-cyan: #00e5ff;
+  --accent-green: #10b981;
+  --accent-yellow: #facc15;
+  --accent-red: #ef4444;
+
+  --accent-primary: var(--accent-blue);
+
+  --shadow-card: 0 8px 30px -4px rgba(0, 0, 0, 0.7);
+}
+
+/* Global Resets */
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -96,22 +93,22 @@ body {
   color: var(--text-main);
   margin: 0;
   padding: 0;
-  line-height: 1.5;
-  transition: background-color 150ms ease, color 150ms ease;
+  line-height: 1.55;
+  transition: background-color 160ms ease, color 160ms ease;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   color: var(--text-main);
-  letter-spacing: -0.04em;
+  letter-spacing: -0.035em;
   font-weight: 900;
   text-transform: uppercase;
   margin-top: 0;
-  line-height: 0.95;
+  line-height: 1;
 }
 
-h1 { font-size: 2.75rem; }
-h2 { font-size: 1.85rem; }
+h1 { font-size: 2.5rem; }
+h2 { font-size: 1.75rem; }
 h3 { font-size: 1.25rem; }
 
 p {
@@ -120,15 +117,13 @@ p {
 }
 
 a {
-  color: var(--text-main);
-  text-decoration: underline;
-  text-decoration-thickness: 2.5px;
-  text-underline-offset: 3px;
-  font-weight: 700;
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-smooth);
 }
 
 a:hover {
-  color: var(--accent-red);
+  color: var(--accent-blue);
 }
 
 button, input, textarea, select {
@@ -141,28 +136,27 @@ code, pre {
   font-family: var(--font-mono);
 }
 
-/* Hard outline focus */
+/* Accessibility focus */
 :focus-visible {
-  outline: 3px solid var(--accent-red);
+  outline: 2px solid var(--accent-blue);
   outline-offset: 2px;
 }
 
-/* Custom raw brutalist scrollbar */
+/* Custom Minimal Scrollbar */
 ::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
   background: var(--bg-page);
-  border-left: 2.5px solid var(--border-color);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--accent-red);
-  border: 2px solid var(--border-color);
+  background: var(--bg-muted);
+  border-radius: var(--radius-pill);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--text-main);
+  background: var(--accent-blue);
 }

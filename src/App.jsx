@@ -2,17 +2,26 @@ import { useState, useEffect, lazy, Suspense } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import Home from './pages/Home'
-import Tasks from './pages/Tasks'
-import Login from './pages/Login'
-import Register from './pages/Register'
-import NotFound from './pages/NotFound'
 import ProtectedRoute from './components/ProtectedRoute'
-import Spinner from './components/Spinner'
 import './App.css'
 
-const Projects = lazy(() => import('./pages/Projects'))
-const Contact = lazy(() => import('./pages/Contact'))
+// Demonstrative lazy loading wrapper with 400ms micro-delay so screen share captures Suspense transitions
+const lazyWithDemo = (importFn, delay = 400) =>
+  lazy(() =>
+    Promise.all([
+      importFn(),
+      new Promise((resolve) => setTimeout(resolve, delay)),
+    ]).then(([module]) => module)
+  )
+
+// Route-level lazy loading (Practical 8 architecture)
+const Home = lazyWithDemo(() => import('./pages/Home'))
+const Projects = lazyWithDemo(() => import('./pages/Projects'))
+const Contact = lazyWithDemo(() => import('./pages/Contact'))
+const Tasks = lazyWithDemo(() => import('./pages/Tasks'))
+const Login = lazyWithDemo(() => import('./pages/Login'))
+const Register = lazyWithDemo(() => import('./pages/Register'))
+const NotFound = lazyWithDemo(() => import('./pages/NotFound'))
 
 function App({ profile }) {
   const studentName = (profile && (profile.displayName || profile.name)) || 'Maharsh'
@@ -34,12 +43,12 @@ function App({ profile }) {
     })
   }
 
-  // Trigger brief indicator on route change
+  // Trigger loading indicator on route change
   useEffect(() => {
     setRouteLoading(true)
     const timer = setTimeout(() => {
       setRouteLoading(false)
-    }, 200)
+    }, 180)
     return () => clearTimeout(timer)
   }, [location.pathname])
 
@@ -50,13 +59,13 @@ function App({ profile }) {
       <main 
         className="app-main"
         style={{ 
-          opacity: routeLoading ? 0.65 : 1,
+          opacity: routeLoading ? 0.6 : 1,
           transition: 'opacity 0.15s ease'
         }}
       >
-        <Suspense fallback={<Spinner message="Loading view..." />}>
+        <Suspense fallback={<div className="route-loader-silent"><div className="silent-spinner" /></div>}>
           <Routes>
-            <Route path="/" element={<Home skills={skills} profile={profile} />} />
+            <Route path="/" element={<Home skills={skills} profile={profile} darkMode={darkMode} />} />
             <Route path="/projects" element={<Projects profile={profile} />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
