@@ -103,3 +103,10 @@ export const deleteTask = (id) =>
   request(`/tasks/${id}`, {
     method: 'DELETE',
   })
+
+export const generateTaskDescription = (title) =>
+  request('/api/ai/generate-description', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ title }),
+  })
